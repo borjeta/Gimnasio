@@ -1,17 +1,12 @@
 package Clases;
 
+import Modulos.ClasesMadre.persona;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
 import java.text.ParseException;
 
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEF;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
-import Modulos.GestionaEmpleados.GestionEmpHoras.Modelo.Clases.ArrayListEmpHoras;
-import Modulos.GestionaEmpleados.GestionEmpHoras.Modelo.Clases.EmpHoras;
-import Modulos.GestionaEmpleados.GestionEmpHoras.Modelo.DAO.DAOEH;
-import Modulos.GestionaEmpleados.GestionEmpTemp.Modelo.Clases.ArrayListEmpTemp;
-import Modulos.GestionaEmpleados.GestionEmpTemp.Modelo.Clases.EmpTemp;
-import Modulos.GestionaEmpleados.GestionEmpTemp.Modelo.DAO.DAOET;
+
+
 import Utils.Apariencia;
 import java.util.ArrayList;
 
@@ -25,9 +20,9 @@ public class Conf {
 	
 
 	public Conf(){
-		ArrayListEmpFijo.efi= new ArrayList<EmpFijo>();
-                ArrayListEmpTemp.eTe= new ArrayList<EmpTemp>();
-                ArrayListEmpHoras.eHo=new ArrayList<EmpHoras>();
+		
+                Arraylistgym.gym= new ArrayList<persona>();
+                Arraylistgym.us= new ArrayList<user>();
                 
                 
 		numdecimal=1;
@@ -41,7 +36,7 @@ public class Conf {
                 //Librerias.txt.abrir_txtOcultoEF();
                 //Librerias.xml.abrir_xmlEF();
 		//Librerias.txt.generatxtOcultoEF();
-		Librerias.xml.abrir_xmlOcultoEF();
+		//Librerias.xml.abrir_xmlOcultoEF();
 		//Librerias.xml.generaxmlOcultoEF();
 	//	Librerias.json.generajsonocultoEF();
 	//	Librerias.txt.abrir_txtOcultoEmpHoras();

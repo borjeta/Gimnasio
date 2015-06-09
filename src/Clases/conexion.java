@@ -19,8 +19,9 @@ public class conexion {
     
 
     static String driver = "com.mysql.jdbc.Driver";
-    static String db = "Empleados";
+    static String db = "Gimnasio";
     static String url = "jdbc:mysql://192.168.21.200:3306/";
+    //static String url = "jdbc:mysql://192.168.1.132:3306/";
     static String user = "root";
     static String pass = "1234";
 
