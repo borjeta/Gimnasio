@@ -3,25 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionGym.GestionClientes.Controlador;
+package Modulos.GestionaEmpleados.GestionEmpFijo.Controlador;
 
 import Clases.fecha;
-import Modulos.ClasesMadre.persona;
-import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLBDGYM;
-import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLGYM;
-import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
-import Modulos.GestionGym.GestionClientes.Modelo.DAO.DAOBDGYM;
-import Modulos.GestionGym.GestionClientes.Modelo.DAO.DAOGYM;
-import Modulos.GestionGym.GestionClientes.Vista.Altagym;
-import Modulos.GestionGym.GestionClientes.Vista.Login.Login;
-import Modulos.GestionGym.GestionClientes.Vista.Pager.PagerGym;
-import Modulos.GestionGym.GestionClientes.Vista.Pager.STM;
-import Modulos.GestionGym.GestionClientes.Vista.Pager.modificagym;
-import Modulos.GestionGym.GestionClientes.Vista.Pager.pagina;
-import Modulos.GestionGym.GestionUsuarios.Controlador.ControladorUser;
-import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
-import Modulos.GestionGym.GestionUsuarios.Modelo.DAO.DAOUs;
-import Modulos.GestionGym.GestionUsuarios.Vista.RootMenu;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLBD;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.pagina;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
+import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
 import Utils.Menus;
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -54,16 +48,15 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Borja Alventosa
  */
-public class controladorgym implements ActionListener, KeyListener, MouseListener, FocusListener{
+public class controladorfijos implements ActionListener, KeyListener, MouseListener, FocusListener{
     
 
-    public  static PagerGym Pagergym = new PagerGym();
-    public static Altagym Alta=new Altagym();
-    public static modificagym modifica= new modificagym();
-    public static Login Login=new Login();
+    public  static PagerFijos Pagerfijos = new PagerFijos();
+    public static CreaEmpFijoFrame Crear=new CreaEmpFijoFrame();
+    public static modificafijo modifica= new modificafijo();
     public static TableRowSorter<TableModel> sorter =new TableRowSorter<TableModel>(new STM());
     
-    private persona ef = null;
+    private EmpFijo ef = null;
     
        
     ImageIcon a = new ImageIcon("src/img/cancel.png");
@@ -82,32 +75,29 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
     
     
 
-    public controladorgym(JFrame frm, int i) {
+    public controladorfijos(JFrame frm, int i) {
 
         switch (i) {
             case 0:
-                Pagergym = (PagerGym) frm;
+                Pagerfijos = (PagerFijos) frm;
                 break;
             case 1:
-                Alta = (Altagym) frm;
+                Crear = (CreaEmpFijoFrame) frm;
                 
                 break;
             case 2:
-                modifica = (modificagym) frm;
+                modifica = (modificafijo) frm;
                 break;
-            case 3:
-                Login=(Login) frm;
         }
-        
     }
-/*
+
     private void siEditables() {
         Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.etinom.setEditable(true);
         Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.etinac.setEnabled(true);
         Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.eticon.setEnabled(true);
         //Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.txtSalariBase.setEditable(true);
     }
-*/
+
     public enum Accion {
 
         // Finestra FrmInterfaceEF
@@ -140,14 +130,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         _TXT_DNI2,
         _TXT_SALARIBASE2,
         _DATA_NAIXEMENT2,
-        _confirmar,
-        
-        //Finestra Login
-        _BTN_OLVIDARPAS,
-        _BTN_ACEPTARLOG,
-        _BTN_HAZTEUS
-        
-        
+        _confirmar
         
 
     }
@@ -160,17 +143,17 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
 
             case 0: // Finestra FrmInterfaceEF
 
-                Pagergym.setTitle("Gimnasio");
-                Pagergym.setVisible(true);
-                Pagergym.setResizable(false);
-                Pagergym.setLocationRelativeTo(null);
+                Pagerfijos.setTitle("Empleat Fix");
+                Pagerfijos.setVisible(true);
+                Pagerfijos.setResizable(false);
+                Pagerfijos.setLocationRelativeTo(null);
+
+                Pagerfijos.tablafijos.setModel(new STM());
+                ((STM) Pagerfijos.tablafijos.getModel()).cargar();
+               Pagerfijos.tablafijos.setFillsViewportHeight(true);
+                Pagerfijos.tablafijos.setRowSorter(sorter);
                 
-               Pagergym.tablagym.setModel(new STM());
-                ((STM) Pagergym.tablagym.getModel()).cargar();
-               Pagergym.tablagym.setFillsViewportHeight(true);
-                Pagergym.tablagym.setRowSorter(sorter);
-                
-                //Pagergym.tablafijos.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
+                //Pagerfijos.tablafijos.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
 
                 //setAmpleColumnes(); // personalitzem l'ample de les columnes
 
@@ -180,9 +163,9 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 // icono de la finestra
                 //CreaEmpFijoFrame.setIconImage(imageicono);
 
-                //Pagergym.cmbEntradesMostrades.setSelectedItem("" + itemsPerPage);
+                //Pagerfijos.cmbEntradesMostrades.setSelectedItem("" + itemsPerPage);
                 // acció de tancar la finestra
-                Pagergym.addWindowListener(new WindowAdapter() {
+                Pagerfijos.addWindowListener(new WindowAdapter() {
                    @Override
                     public void windowClosing(WindowEvent e) {
                        //frmMenu.setEnabled(true);
@@ -190,7 +173,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                     }
                 });
 
-                //Pagergym.CAJA.setText(String.valueOf(ArrayListEmpFijo.efi.size()));
+                //Pagerfijos.CAJA.setText(String.valueOf(ArrayListEmpFijo.efi.size()));
                 
 
                 
@@ -198,107 +181,107 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 
 
                 // combo mostrar nombre d'entrades per pàgina
-                Pagergym.cmbEntradesMostrades.setActionCommand("_CMB_ENTRADESMOSTRADES");
-                Pagergym.cmbEntradesMostrades.setName("_CMB_ENTRADESMOSTRADES");
-                Pagergym.cmbEntradesMostrades.addActionListener(this);
+                Pagerfijos.cmbEntradesMostrades.setActionCommand("_CMB_ENTRADESMOSTRADES");
+                Pagerfijos.cmbEntradesMostrades.setName("_CMB_ENTRADESMOSTRADES");
+                Pagerfijos.cmbEntradesMostrades.addActionListener(this);
                 // botó primer registre
-                Pagergym.primero.setActionCommand("_BTN_PRIMER");
-                Pagergym.primero.setName("_BTN_PRIMER");
-                Pagergym.primero.addActionListener(this);
+                Pagerfijos.primero.setActionCommand("_BTN_PRIMER");
+                Pagerfijos.primero.setName("_BTN_PRIMER");
+                Pagerfijos.primero.addActionListener(this);
                 // botó darrer registre
-                Pagergym.ultimo.setActionCommand("_BTN_ULTIM");
-                Pagergym.ultimo.setName("_BTN_ULTIM");
-                Pagergym.ultimo.addActionListener(this);
+                Pagerfijos.ultimo.setActionCommand("_BTN_ULTIM");
+                Pagerfijos.ultimo.setName("_BTN_ULTIM");
+                Pagerfijos.ultimo.addActionListener(this);
                 // botó següent registre
-                Pagergym.SIGUIENTE.setActionCommand("_BTN_SEGUENT");
-                Pagergym.SIGUIENTE.setName("_BTN_SEGUENT");
-                Pagergym.SIGUIENTE.addActionListener(this);
+                Pagerfijos.SIGUIENTE.setActionCommand("_BTN_SEGUENT");
+                Pagerfijos.SIGUIENTE.setName("_BTN_SEGUENT");
+                Pagerfijos.SIGUIENTE.addActionListener(this);
                 // botó anterior registre
-                Pagergym.ANTERIOR.setActionCommand("_BTN_ANTERIOR");
-                Pagergym.ANTERIOR.setName("_BTN_ANTERIOR");
-                Pagergym.ANTERIOR.addActionListener(this);
+                Pagerfijos.ANTERIOR.setActionCommand("_BTN_ANTERIOR");
+                Pagerfijos.ANTERIOR.setName("_BTN_ANTERIOR");
+                Pagerfijos.ANTERIOR.addActionListener(this);
                 // botó tancar finestra
-                /*Pagergym.btnTancar.setActionCommand("_BTN_TANCAR");
-                Pagergym.btnTancar.setName("_BTN_TANCAR");
-                Pagergym.btnTancar.addActionListener(this);
+                /*Pagerfijos.btnTancar.setActionCommand("_BTN_TANCAR");
+                Pagerfijos.btnTancar.setName("_BTN_TANCAR");
+                Pagerfijos.btnTancar.addActionListener(this);
 */
                 // botó afegir registre
-                Pagergym.btnCrear.setActionCommand("_BTN_AFEGIR");
-                Pagergym.btnCrear.setName("_BTN_AFEGIR");
-                Pagergym.btnCrear.addMouseListener(this);
+                Pagerfijos.btnCrear.setActionCommand("_BTN_AFEGIR");
+                Pagerfijos.btnCrear.setName("_BTN_AFEGIR");
+                Pagerfijos.btnCrear.addMouseListener(this);
                 // botó modificar registre
-                Pagergym.btnModificar.setActionCommand("_BTN_MODIFICAR");
-                Pagergym.btnModificar.setName("_BTN_MODIFICAR");
-                Pagergym.btnModificar.addMouseListener(this);
+                Pagerfijos.btnModificar.setActionCommand("_BTN_MODIFICAR");
+                Pagerfijos.btnModificar.setName("_BTN_MODIFICAR");
+                Pagerfijos.btnModificar.addMouseListener(this);
                 // botó eliminar registre
-                Pagergym.btnEliminar.setActionCommand("_BTN_ELIMINAR");
-                Pagergym.btnEliminar.setName("_BTN_ELIMINAR");
-                Pagergym.btnEliminar.addMouseListener(this);
+                Pagerfijos.btnEliminar.setActionCommand("_BTN_ELIMINAR");
+                Pagerfijos.btnEliminar.setName("_BTN_ELIMINAR");
+                Pagerfijos.btnEliminar.addMouseListener(this);
                 // botó guardar TXT
-                Pagergym.btnTXT.setActionCommand("_BTN_TXT");
-                Pagergym.btnTXT.setName("_BTN_TXT");
-                Pagergym.btnTXT.addMouseListener(this);
+                PagerFijos.btnTXT.setActionCommand("_BTN_TXT");
+                PagerFijos.btnTXT.setName("_BTN_TXT");
+                PagerFijos.btnTXT.addMouseListener(this);
                 // botó guardar JSON
-                Pagergym.btnJSON.setActionCommand("_BTN_JSON");
-                Pagergym.btnJSON.setName("_BTN_JSON");
-                Pagergym.btnJSON.addMouseListener(this);
+                PagerFijos.btnJSON.setActionCommand("_BTN_JSON");
+                PagerFijos.btnJSON.setName("_BTN_JSON");
+                PagerFijos.btnJSON.addMouseListener(this);
                 // botó guardar XML
-                Pagergym.btnXML.setActionCommand("_BTN_XML");
-                Pagergym.btnXML.setName("_BTN_XML");
-                Pagergym.btnXML.addMouseListener(this);
+                PagerFijos.btnXML.setActionCommand("_BTN_XML");
+                PagerFijos.btnXML.setName("_BTN_XML");
+                PagerFijos.btnXML.addMouseListener(this);
                 // Filtre
-                //Pagergym.txtFiltre.setActionCommand("_TXT_FILTRE");
-                //Pagergym.txtFiltre.setName("_TXT_FILTRE");
-                //Pagergym.txtFiltre.addKeyListener(this);
+                //PagerFijos.txtFiltre.setActionCommand("_TXT_FILTRE");
+                //PagerFijos.txtFiltre.setName("_TXT_FILTRE");
+                //PagerFijos.txtFiltre.addKeyListener(this);
 
-                Pagergym.tablagym.setName("_TAULA");
-                Pagergym.tablagym.addMouseListener(this);
+                PagerFijos.tablafijos.setName("_TAULA");
+                PagerFijos.tablafijos.addMouseListener(this);
                 
                 break;
 
             case 1: // Finestra CreaEmpFijoFrame
 
                 //CreaEmpFijoFrame.setTitle("Empleat Fix: AFEGIR");
-                Alta.setVisible(true);
-                Alta.setResizable(false);
-                Alta.setLocationRelativeTo(null);
-            
+                Crear.setVisible(true);
+                Crear.setResizable(false);
+                Crear.setLocationRelativeTo(null);
+                Crear.falloFecha.setVisible(false);
 
                 // icono de la finestra
                // CreaEmpFijoFrame.setIconImage(imageicono);
 
                 // acció de tancar la finestra
-                Alta.addWindowListener(new WindowAdapter() {
+                Crear.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        Alta.setEnabled(true);
-                        Alta.dispose();
+                        Crear.setEnabled(true);
+                        Crear.dispose();
                     }
                 });
 
-                Alta.btnCancelar.setActionCommand("_BTN_CANCELAR1");
-                Alta.btnCancelar.setName("_BTN_CANCELAR1");
-                Alta.btnCancelar.addActionListener(this);
+                Crear.btnCancelar.setActionCommand("_BTN_CANCELAR1");
+                Crear.btnCancelar.setName("_BTN_CANCELAR1");
+                Crear.btnCancelar.addActionListener(this);
 
-                Alta.btnAceptar.setActionCommand("_BTN_GUARDAR1");
-                Alta.btnAceptar.setName("_BTN_GUARDAR1");
-                Alta.btnAceptar.addActionListener(this);
+               Crear.btnAceptar.setActionCommand("_BTN_GUARDAR1");
+               Crear.btnAceptar.setName("_BTN_GUARDAR1");
+               Crear.btnAceptar.addActionListener(this);
 
-                Alta.btnTancar.setActionCommand("_BTN_TANCAR1");
-                Alta.btnTancar.setName("_BTN_TANCAR1");
-                Alta.btnTancar.addActionListener(this);
+                Crear.btnTancar.setActionCommand("_BTN_TANCAR1");
+                Crear.btnTancar.setName("_BTN_TANCAR1");
+                Crear.btnTancar.addActionListener(this);
 
-                Alta.etinombre.setActionCommand("_TXT_NOM1");
-                Alta.etinombre.setName("_TXT_NOM1");
-                Alta.etinombre.addActionListener(this);
-                Alta.etinombre.addKeyListener(this);
-                Alta.etinombre.addFocusListener(this);
+                Crear.etinombre.setActionCommand("_TXT_NOM1");
+                Crear.etinombre.setName("_TXT_NOM1");
+                Crear.etinombre.addActionListener(this);
+                Crear.etinombre.addKeyListener(this);
+                Crear.etinombre.addFocusListener(this);
 
-                Alta.etidni.setActionCommand("_TXT_DNI1");
-                Alta.etidni.setName("_TXT_DNI1");
-                Alta.etidni.addActionListener(this);
-                Alta.etidni.addKeyListener(this);
-                Alta.etidni.addFocusListener(this);
+                Crear.etidni.setActionCommand("_TXT_DNI1");
+                Crear.etidni.setName("_TXT_DNI1");
+                Crear.etidni.addActionListener(this);
+                Crear.etidni.addKeyListener(this);
+                Crear.etidni.addFocusListener(this);
 
                 
                 break;
@@ -309,20 +292,25 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 modifica.setVisible(true);
                 modifica.setResizable(false);
                 modifica.setLocationRelativeTo(null);
-                //BLLGYM.ObtenSeleccionadoCompleto();
-                modifica.etifalloDNI.setVisible(false);
-                modifica.etifalloape.setVisible(false);
-                modifica.etifallonom.setVisible(false);
-                modifica.etidnirep.setVisible(false);
+                BLLEFgraf.ObtenSeleccionadoCompleto();
+                modifica.etisueldo.setEditable(false);
+                 modifica.etifallodni.setVisible(false);
+                 modifica.etiedad.setEditable(false);
+                modifica.etifallodepar.setVisible(false);
+             modifica.lblAntiguitat1.setEditable(false);
+              modifica.etifallonom.setVisible(false);
+        modifica.etifallofecha.setVisible(false);
+        modifica.etidnirep.setVisible(false);
         //Carga los datos del empleado seleccionado en los campos para modificar
-                modifica.etinom.setText(Arraylistgym.o.getNombre());
-                modifica.etiape.setText(Arraylistgym.o.getApellido());
-                modifica.etidni.setText(Arraylistgym.o.getDNI());
-                modifica.eticuota.setText(String.valueOf(Arraylistgym.o.getCuota()));
-        ((JTextFieldDateEditor)modifica.etinac.getDateEditor()).setText(Arraylistgym.o.getFechaNac().toString());
-        
-;
-                        
+        modifica.etinom.setText(ArrayListEmpFijo.o.getNombre());
+        modifica.etidepar.setText(ArrayListEmpFijo.o.getDepartamento());
+        modifica.etidni.setText(ArrayListEmpFijo.o.getDNI());
+        modifica.etiedad.setText(String.valueOf(ArrayListEmpFijo.o.getEdad()));
+        modifica.etisueldo.setText(String.valueOf(ArrayListEmpFijo.o.getSueldo()));
+        modifica.lblAntiguitat1.setText(String.valueOf(ArrayListEmpFijo.o.getAntiguedad()));
+        ((JTextFieldDateEditor)modifica.etinac.getDateEditor()).setText(ArrayListEmpFijo.o.getFechaNac().toString());
+        ((JTextFieldDateEditor)modifica.eticon.getDateEditor()).setText(ArrayListEmpFijo.o.getFechaCont().toString());
+
                 // icono de la finestra
                 //modifica.setIconImage(imageicono);
 
@@ -331,7 +319,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 modifica.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        Pagergym.setEnabled(true);
+                        Pagerfijos.setEnabled(true);
                         modifica.dispose();
                     }
                 });
@@ -340,7 +328,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
 
                // this.omplirCampsM(EFBLL.cercarEmpleatFix());
 
-               
+                siEditables();
 
                 modifica.btnCancelar.setActionCommand("_BTN_CANCELAR2");
                 modifica.btnCancelar.setName("_BTN_CANCELAR2");
@@ -374,87 +362,24 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 modifica.etinac.setName("_DATA_NAIXEMENT2");
                 modifica.etinac.addKeyListener(this);
                 break;
-                
-            case 3:
-                //FINESTRA DE LOGIN
-                BLLBDGYM.iniciatodo();
-                Login.setVisible(true);
-                Login.setResizable(false);
-                Login.setLocationRelativeTo(null);
-                
-//BLLGYM.refrescatabla();
-                
-                Login.btLogearse.setActionCommand("_BTN_HAZTEUS");
-                Login.btLogearse.setName("_BTN_HAZTEUS");
-                Login.btLogearse.addActionListener(this);
-                
-                
-                
-                
-                Login.btAceptar.setActionCommand("_BTN_ACEPTARLOG");
-                Login.btAceptar.setName("_BTN_ACEPTARLOG");
-                Login.btAceptar.addActionListener(this);
-                
-//FALTA POSAR EL BOTO EN EL LOGIN
-                Login.btnTancar.setActionCommand("_BTN_TANCAR1");
-                Login.btnTancar.setName("_BTN_TANCAR1");
-                Login.btnTancar.addActionListener(this);
-
-                Login.etiLogin.setActionCommand("_TXT_NOM1");
-                Login.etiLogin.setName("_TXT_NOM1");
-                Login.etiLogin.addActionListener(this);
-                Login.etiLogin.addKeyListener(this);
-                Login.etiLogin.addFocusListener(this);
-Login.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        Login.setEnabled(true);
-                        Login.dispose();
-                    }
-                });
-                break;
-                
-        
         }
-        
 
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         switch (Accion.valueOf(ae.getActionCommand())) {
-            //FINESTRA LOGIN
-            case _BTN_ACEPTARLOG:
-                boolean val=BLLGYM.compruebauser();
-                JOptionPane.showMessageDialog(null,val);
-                if (val==true){
-                    //if(Arraylistgym.tipo==2){
-                        new ControladorUser(new RootMenu(),1).iniciar(1);
-                    //}
-                    if(Arraylistgym.tipo==0){
-                        new controladorgym(new PagerGym(),0).iniciar(0);
-                    }
-                }
-                else{
-                    
-                    Login.dispose();
-                }
-            JOptionPane.showMessageDialog(null,Arraylistgym.tipo);
-                break;
-            case _BTN_HAZTEUS:
-                new controladorgym(new Altagym(),1).iniciar(1);
-                break;
             // Finestra FrmInterfaceEF
             case _BTN_ANTERIOR:
                 pagina.currentPageIndex -= 1;
-               // pagina.initLinkBox();
+                pagina.initLinkBox();
                 //tablafijos.addRowSelectionInterval(0, 0);
                 break;
             case _confirmar:
-                BLLGYM.ModificaCliPager();
+                BLLEFgraf.ModificaFijoPager();
                 modifica.dispose();
-                new controladorgym(new PagerGym(),0).iniciar(0);
-                           break;   
+                new controladorfijos(new PagerFijos(),1).iniciar(1);
+                              
             case _BTN_SEGUENT:
                 pagina.currentPageIndex += 1;
                 pagina.initLinkBox();
@@ -471,21 +396,21 @@ Login.addWindowListener(new WindowAdapter() {
                 //tablafijos.addRowSelectionInterval(0, 0);
                 break;
             case _CMB_ENTRADESMOSTRADES:
-               pagina.itemsPerPage = Integer.parseInt(Pagergym.cmbEntradesMostrades.getSelectedItem().toString());
+               pagina.itemsPerPage = Integer.parseInt(Pagerfijos.cmbEntradesMostrades.getSelectedItem().toString());
                 pagina.currentPageIndex = 1;
                 pagina.initLinkBox();
                
                 break;
             case _BTN_TANCAR:
-                Pagergym.setEnabled(true);
-                Alta.dispose();
+                Pagerfijos.setEnabled(true);
+                Crear.dispose();
                 break;
             case _BTN_TANCAR1:
-                Alta.setEnabled(true);
-                Alta.dispose();
+                Crear.setEnabled(true);
+                Crear.dispose();
                 break;
             case _BTN_TANCAR2:
-                Alta.setEnabled(true);
+                Crear.setEnabled(true);
                 modifica.dispose();
                 break;
             case _BTN_CANCELAR1:
@@ -493,57 +418,47 @@ Login.addWindowListener(new WindowAdapter() {
                 break;
             case _BTN_CANCELAR2:
                 //this.omplirCampsM(EFBLL.cercarEmpleatFix());
-                
+                siEditables();
                 break;
             case _BTN_GUARDAR1:
                 //ef = this.guardarA();
                  {
-                     {  
-                             
-                       // Pagergym.tablagym.setModel(new STM());
-                //((STM)  Pagergym.tablagym.getModel()).cargar();
-                        Pagergym.tablagym.setFillsViewportHeight(true);
-                        Pagergym.tablagym.setRowSorter(sorter);
-                        Pagergym.tablagym.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
-                        Pagergym.lblContador.setText(String.valueOf(Arraylistgym.gym.size()));
-                        //Alta.txtFiltre.setText(null);
-                        Alta.setEnabled(true);
-                        Alta.dispose();
-                        Arraylistgym.C=DAOGYM.pideCliente();
-                        BLLGYM.ValidaTodoCre();
-                        BLLBDGYM.CreaCli();
-                        BLLGYM.creaCli();
-                        BLLGYM.guardaOcultoTXT();
-                        BLLGYM.guardaOcultoXML();
-                        int pos =DAOGYM.buscarfijo(Arraylistgym.o);
-                        if (pos!=-1){
-                           JOptionPane.showMessageDialog(null,"El Login introducido ya se encuentra en la base de datos");
-                            }
-                       else
-                           new controladorgym(new PagerGym(), 0).iniciar(0);
-                       
+                     {  BLLEFgraf.creaEmpFijo();
+                        //Pagerfijos.tablafijos.setModel(new STM());
+                ((STM) Pagerfijos.tablafijos.getModel()).cargar();
+                        Pagerfijos.tablafijos.setFillsViewportHeight(true);
+                        tablafijos.setRowSorter(sorter);
+                        tablafijos.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
+                        Pagerfijos.lblContador.setText(String.valueOf(ArrayListEmpFijo.efi.size()));
+                        //Crear.txtFiltre.setText(null);
+                        Crear.setEnabled(true);
+                        Crear.dispose();
+                        new controladorfijos(new PagerFijos(),1).iniciar(1);
+                        BLLBD.CreaEmpFijoNou();
+                        BLLEFgraf.guardaOcultoTXT();
+                        BLLEFgraf.guardaOcultoXML();
                     }
                 }
                 break;
             case _BTN_GUARDAR2:
                 
                  {
-                        //guardarM();
-                    {   //BLLGYM.ObtenSeleccionadoCompleto();
-                        // seleccionem la primera fila 
-                        Pagergym.lblContador.setText(String.valueOf(Arraylistgym.gym.size()));
-                       
+                    
+                        guardarM();
+                    {   BLLEFgraf.ObtenSeleccionadoCompleto();
+                        ((STM) tablafijos.getModel()).cargar();
+                        tablafijos.setFillsViewportHeight(true);
+                        tablafijos.setRowSorter(sorter);
+                        tablafijos.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
+                        Pagerfijos.lblContador.setText(String.valueOf(ArrayListEmpFijo.efi.size()));
+                        //Crear.txtFiltre.setText(null);
                         modifica.setEnabled(true);
-                        
-                        BLLGYM.ModificaCliPager();
-                        BLLBDGYM.modificaCli();
-                        BLLGYM.guardaOcultoTXT();
-                        BLLGYM.guardaOcultoXML();
-                        //JOptionPane.showMessageDialog(null,"Modificado con éxito");
                         modifica.dispose();
-                        //BLLGYM.refrescatabla();
-                        new controladorgym(new PagerGym(), 0).iniciar(0);
-                        
+                        new controladorfijos(new PagerFijos(), 0).iniciar(0);
+                        BLLBD.modificaEmpFijo();
+                        BLLEFgraf.guardaOcultoTXT();
+                        BLLEFgraf.guardaOcultoXML();
+                        //JOptionPane.showMessageDialog(null,"Modificado con éxito");
                         
                         
                              //ef = this.guardarM();
@@ -576,84 +491,66 @@ Login.addWindowListener(new WindowAdapter() {
             // Finestra FrmInterfaceEF
             case _BTN_XML:
                 
-                BLLGYM.guardaOcultoXML();
+                BLLEFgraf.guardaOcultoXML();
                 break;
             case _BTN_JSON:
                 //guardarArxiuJSONEFBLL();
                 break;
             case _BTN_TXT:
-                BLLGYM.guardaOcultoTXT();
+                BLLEFgraf.guardaOcultoTXT();
                 break;
             case _BTN_AFEGIR:
                 //selec = posicioAbsoluta();
-                Pagergym.dispose();
+                Pagerfijos.dispose();
                 //if (selec == -1) {
                 //} else {
-                    Alta.setEnabled(false);
-                    if((Arraylistgym.tipo==1)||(Arraylistgym.tipo==2))
-                            {
-                    new controladorgym(new Altagym(),1).iniciar(1);
-            }else {
-                        JOptionPane.showMessageDialog(null,"No tiene permisos para acceder");
-                    }
+                    Crear.setEnabled(false);
+                    new controladorfijos(new CreaEmpFijoFrame(),1).iniciar(1);
                 //}
                 break;
             case _BTN_MODIFICAR:
-              if((Arraylistgym.tipo==1)||(Arraylistgym.tipo==2))
-                            {  
+                
                 selec = posicioAbsoluta();
                 
                 if (selec == -1) {
                 } else {
-                   String dni = (String) Pagergym.tablagym.getModel().getValueAt(selec, 6);
-                   Arraylistgym.o = new persona(dni,"");
-                    BLLGYM.ObtenSeleccionadoCompleto();
-                    Pagergym.setEnabled(false);
-                    new controladorgym(new modificagym(), 2).iniciar(2);
-                    Pagergym.dispose();
-                    Pagergym.setVisible(false);
+                    String dni = (String) tablafijos.getModel().getValueAt(selec, 0);
+                    ArrayListEmpFijo.o = new EmpFijo(dni);
+                    BLLEFgraf.ObtenSeleccionadoCompleto();
+                    Pagerfijos.setEnabled(false);
+                    new controladorfijos(new modificafijo(), 2).iniciar(2);
+                    Pagerfijos.dispose();
+                    Pagerfijos.setVisible(false);
                 }
-                            }
-              if(Arraylistgym.tipo==0){
-                  
-                  new controladorgym(new modificagym(),2).iniciar(2);
-              }
-              
                 break;
             case _BTN_ELIMINAR:
-                
-            {
-               /* if (selec == -1) {
-                     Menus.warning("Selecciona primer", "Atenció!");
-                     selec= ((STM)Pagergym.tablagym.getModel()).getRowCount();
-                     JOptionPane.showMessageDialog(null,"POSICION:"+selec);
+                BLLEFgraf.EliminaFijo();
+                selec = posicioAbsoluta();
+                if (selec == -1) {
+                    // Menus.warning("Selecciona primer", "Atenció!");
                 } else {
-                    //
-                   */DAOGYM.ObtenSelecionado();
+                    String dni = (String) tablafijos.getModel().getValueAt(selec, 0);
+                    ArrayListEmpFijo.o= new EmpFijo(dni);
                     
-                    if(Arraylistgym.tipo==1){
-                        JOptionPane.showMessageDialog(null,"debes de ser administrador para borrar un cliente");
-                        break;
-                    }else{
-                    BLLGYM.EliminaFijo();
-                    BLLBDGYM.EliminaCliBD();
-                    BLLGYM.guardaOcultoTXT();
-                    BLLGYM.guardaOcultoXML();
-                    BLLGYM.refrescatabla();
-                     break;
-                    }
+                        ((STM) tablafijos.getModel()).cargar();
+                        tablafijos.setFillsViewportHeight(true);
+                        tablafijos.setRowSorter(sorter);
+                        tablafijos.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
+                        //lblContador.setText(String.valueOf(efix.size()));
+                        //Crear.txtFiltre.setText(null);
+                    BLLBD.EliminafijoBD();
                 }
-                
+                break;
             case _TAULA:
-                Pagergym.tablagym = (JTable) me.getSource();
+                tablafijos = (JTable) me.getSource();
                 Point point = me.getPoint();
-                int row = Pagergym.tablagym.rowAtPoint(point);
+                int row = tablafijos.rowAtPoint(point);
                 if (me.getClickCount() == 2) {
                     int sel = posicioAbsoluta();
-                    String dni = (String) Pagergym.tablagym.getModel().getValueAt(sel, 6);
-                    Arraylistgym.o = new persona(dni,"");
-                    Alta.setEnabled(false);
-                    new controladorgym(new modificagym(), 2).iniciar(2);
+                    String dni = (String) tablafijos.getModel().getValueAt(sel, 0);
+                    ArrayListEmpFijo.o = new EmpFijo(dni);
+                    Crear.setEnabled(false);
+                    new controladorfijos(new modificafijo(), 2).iniciar(2);
                 }
                 break;
         }
@@ -673,13 +570,13 @@ Login.addWindowListener(new WindowAdapter() {
                 //CreaEmpFijoFrame.btnTXT.setText("<html><b><font color=green >TXT</font><b></html>");
                 break;
             case _BTN_AFEGIR:
-                //Alta.btnAlta.setIcon(afegir1);
+                //Crear.btnCrear.setIcon(afegir1);
                 break;
             case _BTN_MODIFICAR:
-                //Alta.btnModificar.setIcon(editar1);
+                //Crear.btnModificar.setIcon(editar1);
                 break;
             case _BTN_ELIMINAR:
-                //Alta.btnEliminar.setIcon(eliminar1);
+                //Crear.btnEliminar.setIcon(eliminar1);
                 break;
         }
     }
@@ -782,10 +679,10 @@ Login.addWindowListener(new WindowAdapter() {
     public void focusGained(FocusEvent evt) {
         switch (Accion.valueOf(evt.getComponent().getName())) {
             case _TXT_DNI1:
-                Alta.etidni.setForeground(green);
+                Crear.etidni.setForeground(green);
                 break;
             case _TXT_NOM1:
-                Alta.etinombre.setForeground(green);
+                Crear.etinombre.setForeground(green);
                 break;
             case _TXT_SALARIBASE1:
                 //CreaEmpFijoFrame.txtSalariBase.setForeground(verd);
@@ -803,11 +700,11 @@ Login.addWindowListener(new WindowAdapter() {
     public void focusLost(FocusEvent evt) {
         switch (Accion.valueOf(evt.getComponent().getName())) {
             case _TXT_DNI1:
-                Alta.etidni.setForeground(Color.BLACK);
+                Crear.etidni.setForeground(Color.BLACK);
                 this.validarDni();
                 break;
             case _TXT_NOM1:
-                Alta.etinombre.setForeground(Color.BLACK);
+                Crear.etinombre.setForeground(Color.BLACK);
                 break;
             case _TXT_NOM2:
                 modifica.etinom.setForeground(Color.BLACK);
@@ -827,10 +724,10 @@ Login.addWindowListener(new WindowAdapter() {
 
     private int posicioAbsoluta() {
         int n, selection, inicio, selection1 = 0;
-        n = ((STM) Pagergym.tablagym.getModel()).getRowCount();
+        n = ((STM) tablafijos.getModel()).getRowCount();
         if (n != 0) {
-            inicio = (pagina.currentPageIndex ) * pagina.itemsPerPage;//Despues del currentPageIndex habia un -1; dins del parentesis
-            selection = Pagergym.tablagym.getSelectedRow();
+            inicio = (pagina.currentPageIndex - 1) * pagina.itemsPerPage;
+            selection = tablafijos.getSelectedRow();
             selection1 = inicio + selection;
         } else {
             selection1 = -1;
@@ -842,12 +739,12 @@ Login.addWindowListener(new WindowAdapter() {
      * personalitzem l'ample de les columnes
      */
     private void setAmpleColumnes() {
-        JViewport scroll = (JViewport) Pagergym.tablagym.getParent();
+        JViewport scroll = (JViewport) tablafijos.getParent();
         int ample = scroll.getWidth();
         int ampleColumna = 0;
-        TableColumnModel modelColumna = Pagergym.tablagym.getColumnModel();
+        TableColumnModel modelColumna = tablafijos.getColumnModel();
         TableColumn columnaTaula;
-        for (int i = 0; i < Pagergym.tablagym.getColumnCount(); i++) {
+        for (int i = 0; i < tablafijos.getColumnCount(); i++) {
             columnaTaula = modelColumna.getColumn(i);
             switch (i) {
                 case 0:
@@ -872,28 +769,27 @@ Login.addWindowListener(new WindowAdapter() {
 
     private void validarNomA() {
         
-        if (Alta.etinombre.getText().isEmpty()) {
-            Alta.lblbApe.setIcon(buit);
+        if (Crear.etinombre.getText().isEmpty()) {
+            Crear.lblbNom.setIcon(buit);
         } else {
-            if (Validacion.validaNombre(Alta.etinombre.getText())) {
-                Altagym.lblbNom.setIcon(ok);
-                //Altagym.etifalloNombre.setVisible(false);
+            if (Validacion.validaNombre(Crear.etinombre.getText())) {
+                CreaEmpFijoFrame.lblbNom.setIcon(ok);
+                CreaEmpFijoFrame.etifalloNombre.setVisible(false);
             } else {
-                Altagym.lblbNom.setIcon(cancel);
-                //Altagym.etifalloNombre.setVisible(true);
+                CreaEmpFijoFrame.lblbNom.setIcon(cancel);
+                CreaEmpFijoFrame.etifalloNombre.setVisible(true);
             }
         }
     }
 
     private void validarNomM() {
         if (modifica.etinom.getText().isEmpty()) {
-            modifica.lblNom.setIcon(buit);
-            
+            modifica.lblbNom.setIcon(buit);
         } else {
             if (Validacion.validaNombre(modifica.etinom.getText())) {
-                modifica.lblNom.setIcon(ok);
+                modifica.lblbNom.setIcon(ok);
             } else {
-                modifica.lblNom.setIcon(cancel);
+                modifica.lblbNom.setIcon(cancel);
             }
         }
     }
@@ -917,24 +813,24 @@ Login.addWindowListener(new WindowAdapter() {
      * valida el dni en el frm afegir
      */
     private void validarDni() {
-        if (Alta.etidni.getText().isEmpty()) {
+        if (Crear.etidni.getText().isEmpty()) {
             
-            Altagym.lblbDni.setIcon(buit);
+            CreaEmpFijoFrame.lblbDni.setIcon(buit);
         } else {
-            if (Validacion.DNI(Alta.etidni.getText())) { // valida si té un format de dni-nie
-                Altagym.lblbDni.setIcon(ok);
-                Altagym.etifalloDNI.setVisible(false);
+            if (Validacion.DNI(Crear.etidni.getText())) { // valida si té un format de dni-nie
+                CreaEmpFijoFrame.lblbDni.setIcon(ok);
+                CreaEmpFijoFrame.etifalloDNI.setVisible(false);
             } else {
                 //CreaEmpFijoFrame.txtDni.setText(Funcions.nifnie(CreaEmpFijoFrame.txtDni.getText())); // canvia la lletra de dni si és incorrecta
-            Altagym.lblbDni.setIcon(cancel);
-            Altagym.etifalloDNI.setVisible(true);
+            CreaEmpFijoFrame.lblbDni.setIcon(cancel);
+            CreaEmpFijoFrame.etifalloDNI.setVisible(true);
             }
         }
     }
-   /*  if (Alta.etinombre.getText().isEmpty()) {
-            Alta.lblbNom.setIcon(buit);
+   /*  if (Crear.etinombre.getText().isEmpty()) {
+            Crear.lblbNom.setIcon(buit);
         } else {
-            if (Validacion.validaNombre(Alta.etinombre.getText())) {
+            if (Validacion.validaNombre(Crear.etinombre.getText())) {
                 CreaEmpFijoFrame.lblbNom.setIcon(ok);
                 CreaEmpFijoFrame.etifalloNombre.setVisible(false);
             } else {
@@ -977,17 +873,17 @@ Login.addWindowListener(new WindowAdapter() {
      */
     private void demanaDni() {
         
-        int pos = BLLGYM.BuscaSoloPorDni(Altagym.etidni.getText()); // busca duplicats del dni
+        int pos = BLLEFgraf.BuscaSoloPorDni(CreaEmpFijoFrame.etidni.getText()); // busca duplicats del dni
         if (pos != -1) {
             
             //CreaEmpFijoFrame.lblbDni.setIcon();
            // Menus.warning("DNI ja donat d'alta!", "Empleat Fix");
         } else {
-            if (Validacion.DNI(Altagym.etidni.getText())) {
-                Altagym.lblbDni.setIcon(ok);
-                Altagym.etinombre.requestFocus();
+            if (Validacion.DNI(CreaEmpFijoFrame.etidni.getText())) {
+                CreaEmpFijoFrame.lblbDni.setIcon(ok);
+                CreaEmpFijoFrame.etinombre.requestFocus();
             } else {
-                Altagym.lblbDni.setIcon(cancel);
+                CreaEmpFijoFrame.lblbDni.setIcon(cancel);
             }
         }
     }
@@ -1034,10 +930,10 @@ Login.addWindowListener(new WindowAdapter() {
     }
 */
     public static void cancelarEFA() {
-        Altagym.etinombre.setText(null);
-        Altagym.etidni.setText(null);
-        Altagym.etinac.setCalendar(null);
-        
+        CreaEmpFijoFrame.etinombre.setText(null);
+        CreaEmpFijoFrame.etidni.setText(null);
+        CreaEmpFijoFrame.etiNac.setCalendar(null);
+        CreaEmpFijoFrame.etiCon.setCalendar(null);
         //CreaEmpFijoFrame.txtSalariBase.setText(null);
         //CreaEmpFijoFrame.etiedad.setText(null);
         //CreaEmpFijoFrame.lblSalari.setText(null);
@@ -1048,11 +944,11 @@ Login.addWindowListener(new WindowAdapter() {
         //CreaEmpFijoFrame.lblbDcontratacio.setIcon(buit);
         //CreaEmpFijoFrame.lblAntiguitat1.setText(null);
         //CreaEmpFijoFrame.lblAntiguitat2.setText(null);
-        Altagym.etidni.requestFocus();
+        CreaEmpFijoFrame.etidni.requestFocus();
     }
 
-    private persona guardarM() {
-        persona ef = null;
+    private EmpFijo guardarM() {
+        EmpFijo ef = null;
         int difer = 0;
         int antiguitat = 0;
         int edat = 0;
@@ -1066,27 +962,27 @@ Login.addWindowListener(new WindowAdapter() {
 
         // si els camps no tenen dades
         if (modifica.etinom.getText().isEmpty()) {
-            modificagym.lblNom.setIcon(cancel);
+            modifica.lblbNom.setIcon(cancel);
         }
         if (modifica.etinac.getDate() == null) {
-            //modifica.lblbNaixement.setIcon(cancel);
+            modifica.lblbNaixement.setIcon(cancel);
         }
-        //if (odifica.eticon.getDate() == null) {
-           //modifica.lblbContractacio.setIcon(cancel);
-        //}
+        if (modifica.eticon.getDate() == null) {
+            modifica.lblbContractacio.setIcon(cancel);
+        }
         //if (FrmModiEF.txtSalariBase.getText().isEmpty()) {
           //  FrmModiEF.lblbSalariBase.setIcon(cancel);
         
 
         if (Validacion.validaNombre(modifica.etinom.getText())) {
-            modifica.lblNom.setIcon(ok);
+            modifica.lblbNom.setIcon(ok);
         } else {
-            modifica.lblNom.setIcon(ok);
+            modifica.lblbNom.setIcon(ok);
             nom = modifica.etinom.getText();
         }
 
         // Data naixement
-        
+        try {
 
             // si el JDateChooser torna un String
             String dn = ((JTextFieldDateEditor) modifica.etinac.getDateEditor()).getText();
@@ -1094,8 +990,8 @@ Login.addWindowListener(new WindowAdapter() {
 
             // si el JDateChooser torna un Date()   
            // datanaixement = new fecha((FrmConfig.DateDataNaixement.getDate()));
+            edat = datanaixement.restafechas();
             
-/*  
             if (edat < 16) {
                 modifica.lblbNaixement.setIcon(cancel);
                // Menus.warning("Ha de ser major de 16 anys", "Atenció");
@@ -1143,17 +1039,17 @@ Login.addWindowListener(new WindowAdapter() {
         } catch (Exception ex) {
             FrmModiEF.lblbSalariBase.setIcon(cancel);
             FrmModiEF.lblSalari.setText(null);
-        }
-*/
-        if ((modifica.lblNom.getIcon().equals(ok)))
-                //&& //(FrmModiEF.lblbSalariBase.getIcon().equals(ok))
-                 //(modifica.lblbContractacio.getIcon().equals(ok))
-               // && (modifica.lblbNaixement.getIcon().equals(ok))) {
+        }*/
+
+        if ((modifica.lblbNom.getIcon().equals(ok))
+                && //(FrmModiEF.lblbSalariBase.getIcon().equals(ok))
+                 (modifica.lblbContractacio.getIcon().equals(ok))
+                && (modifica.lblbNaixement.getIcon().equals(ok))) {
             dni = modifica.etidni.getText();
             //if (Menus.confirmar("Guardar les dades?", "Guardar")) {
-                BLLGYM.ModificaCliPager();
+                BLLEFgraf.ModificaFijoPager();
             //}
-        
+        }
         return ef;
     }
 
@@ -1162,7 +1058,7 @@ Login.addWindowListener(new WindowAdapter() {
      *
      * @return un objecte EmpleatFix
      */
-    private persona guardarA() {
+    private EmpFijo guardarA() {
         int difer = 0;
         int antiguitat = 0;
         int edat = 0;
@@ -1174,38 +1070,40 @@ Login.addWindowListener(new WindowAdapter() {
         fecha datanaixement = null;
         fecha datacontratacio = null;
 
-        if (Altagym.etidni.getText().isEmpty()) {
-            Altagym.lblbDni.setIcon(cancel);
+        if (CreaEmpFijoFrame.etidni.getText().isEmpty()) {
+            CreaEmpFijoFrame.lblbDni.setIcon(cancel);
         }
-        if (Altagym.etinombre.getText().isEmpty()) {
-            Altagym.lblbApe.setIcon(cancel);
+        if (CreaEmpFijoFrame.etinombre.getText().isEmpty()) {
+            CreaEmpFijoFrame.lblbNom.setIcon(cancel);
         }
-        if (Altagym.etinac.getDate() == null) {
-            Altagym.lblbNaixement.setIcon(cancel);
+        if (CreaEmpFijoFrame.etiNac.getDate() == null) {
+            CreaEmpFijoFrame.lblbNaixement.setIcon(cancel);
         }
-       
-        //if (Altagym.txtSalariBase.getText().isEmpty()) {
-          //  Altagym.lblbSalariBase.setIcon(cancel);
+        if (CreaEmpFijoFrame.etiCon.getDate() == null) {
+            CreaEmpFijoFrame.lblbContractacio.setIcon(cancel);
+        }
+        //if (CreaEmpFijoFrame.txtSalariBase.getText().isEmpty()) {
+          //  CreaEmpFijoFrame.lblbSalariBase.setIcon(cancel);
         //}
 
-        if (Validacion.validaNombre(Altagym.etinombre.getText())) {
-           Altagym.lblbApe.setIcon(cancel);
+        if (Validacion.validaNombre(CreaEmpFijoFrame.etinombre.getText())) {
+           CreaEmpFijoFrame.lblbNom.setIcon(cancel);
         } else {
-            Altagym.lblbApe.setIcon(ok);
-            nom = Altagym.etinombre.getText();
+            CreaEmpFijoFrame.lblbNom.setIcon(ok);
+            nom = CreaEmpFijoFrame.etinombre.getText();
         }
 
-        dni = Altagym.etidni.getText();
+        dni = CreaEmpFijoFrame.etidni.getText();
         if (Validacion.DNI(dni)) {
-            Altagym.lblbDni.setIcon(cancel);
+            CreaEmpFijoFrame.lblbDni.setIcon(cancel);
         } else {
-            int pos = BLLGYM.BuscaSoloPorDni(dni);
+            int pos = BLLEFgraf.BuscaSoloPorDni(dni);
             if (pos != -1) {
-                Altagym.lblbDni.setIcon(cancel);
-                Menus.warning("DNI ja donat d'alta!", "Cliente");
+                CreaEmpFijoFrame.lblbDni.setIcon(cancel);
+                Menus.warning("DNI ja donat d'alta!", "Empleat Fix");
             } else {
-                Altagym.lblbDni.setIcon(ok);
-                //Altagym.txtDni.setText(Funcions.nifnie(dni));
+                CreaEmpFijoFrame.lblbDni.setIcon(ok);
+                //CreaEmpFijoFrame.txtDni.setText(Funcions.nifnie(dni));
             }
         }
 
@@ -1213,65 +1111,71 @@ Login.addWindowListener(new WindowAdapter() {
         try {
 
             // si el JDateChooser torna un String
-            String dn = ((JTextFieldDateEditor) Altagym.etinac.getDateEditor()).getText();
+            String dn = ((JTextFieldDateEditor) CreaEmpFijoFrame.etiNac.getDateEditor()).getText();
             datanaixement = new fecha(dn);
 
             // si el JDateChooser torna un Date()   
            // datanaixement = new fecha((FrmConfig.DateDataNaixement.getDate()));
             edat = datanaixement.restafechas();
             if (edat < 16) {
-               // Altagym.lblbDnaixement.setIcon(cancel);
+               // CreaEmpFijoFrame.lblbDnaixement.setIcon(cancel);
                 Menus.warning("Ha de ser major de 16 anys", "Atenció");
             } else {
-                Altagym.lblbNaixement.setIcon(ok);
-                //Altagym.lblEdad.setText("" + edat);
+                CreaEmpFijoFrame.lblbNaixement.setIcon(ok);
+                CreaEmpFijoFrame.lblEdad.setText("" + edat);
             }
         } catch (Exception ex) {
-            Alta.lblbNaixement.setIcon(cancel);
+            Crear.lblbNaixement.setIcon(cancel);
         }
 
         // Data contratacio
-       
+        try {
+            
+            datacontratacio = new fecha(((JTextFieldDateEditor)CreaEmpFijoFrame.etiCon.getDateEditor()).getText());
+            CreaEmpFijoFrame.lblbContractacio.setIcon(ok);
+        } catch (Exception ex) {
+            CreaEmpFijoFrame.lblbContractacio.setIcon(cancel);
+        }
         try {
             difer = datanaixement.restafechas();
             if (difer >= 16) { // difer
                 antiguitat = datacontratacio.restafechas();
                 
-                //Altagym.lblbContractacio.setIcon(ok);
+                CreaEmpFijoFrame.lblbContractacio.setIcon(ok);
             }
         } catch (Exception ex) {
-            //Altagym.lblbContractacio.setIcon(cancel);
+            CreaEmpFijoFrame.lblbContractacio.setIcon(cancel);
         }
 
         // Salari Base        
         /*try {
-            soubase = Float.parseFloat(Altagym.txtSalariBase.getText());
+            soubase = Float.parseFloat(CreaEmpFijoFrame.txtSalariBase.getText());
             if (soubase >= 0) {
                 sou = soubase * (1 + (percent / 100));
-                Altagym.lblSalari.setText(Format.formatConfig(sou, Core.conf));
-                Altagym.lblbSalariBase.setIcon(ok);
+                CreaEmpFijoFrame.lblSalari.setText(Format.formatConfig(sou, Core.conf));
+                CreaEmpFijoFrame.lblbSalariBase.setIcon(ok);
             } else {
                 soubase = 1 / 0;
             }
         } catch (Exception ex) {
-            Altagym.lblbSalariBase.setIcon(cancel);
-            Altagym.lblSalari.setText(null);
+            CreaEmpFijoFrame.lblbSalariBase.setIcon(cancel);
+            CreaEmpFijoFrame.lblSalari.setText(null);
         }
 */
-        if ((Altagym.lblbDni.getIcon().equals(ok))
-                && (Altagym.lblbApe.getIcon().equals(ok))
-                && //(Altagym.lblbSalariBase.getIcon().equals(ok))
-                 //(Altagym.lblbContractacio.getIcon().equals(ok))
-                 (Altagym.lblbNaixement.getIcon().equals(ok))) {
+        if ((CreaEmpFijoFrame.lblbDni.getIcon().equals(ok))
+                && (CreaEmpFijoFrame.lblbNom.getIcon().equals(ok))
+                && //(CreaEmpFijoFrame.lblbSalariBase.getIcon().equals(ok))
+                 (CreaEmpFijoFrame.lblbContractacio.getIcon().equals(ok))
+                && (CreaEmpFijoFrame.lblbNaixement.getIcon().equals(ok))) {
 
             if (dni != null) {
-                int pos = BLLGYM.BuscaSoloPorDni(dni);
+                int pos = BLLEFgraf.BuscaSoloPorDni(dni);
                 if (pos != -1) {
-                    Altagym.lblbDni.setIcon(cancel);
-                    Menus.warning("DNI ja donat d'alta!", "Cliente");
+                    CreaEmpFijoFrame.lblbDni.setIcon(cancel);
+                    Menus.warning("DNI ja donat d'alta!", "Empleat Fix");
                 } else {
                     if (Menus.confirmar("Guardar les dades?", "Guardar")) {
-                        BLLGYM.creaCli();
+                        BLLEFgraf.creaEmpFijo();
                     }
                 }
             }

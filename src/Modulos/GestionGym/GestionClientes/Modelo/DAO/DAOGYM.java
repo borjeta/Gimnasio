@@ -13,6 +13,7 @@ import static Modulos.GestionGym.GestionClientes.Controlador.controladorgym.sort
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLBDGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 import Modulos.GestionGym.GestionClientes.Vista.Altagym;
 import Modulos.GestionGym.GestionClientes.Vista.Login.Login;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.PagerGym;
@@ -91,7 +92,7 @@ public class DAOGYM {
     }
     
     
-     public static persona pideCliente() {
+     public static Cliente pideCliente() {
          boolean val=false;
          
          String nombre="",Apellido="";
@@ -122,12 +123,13 @@ public class DAOGYM {
              else {
                  JOptionPane.showMessageDialog(null,"DEBE SELECCIONAR UNA CATEGORIA");
              }
+             int diaPago=Altagym.CalenDia.getDay();
              
              
-             String login=Altagym.etilogin.getText();
-             String password=Altagym.etipassword.getText();
+         String login=Altagym.etilogin.getText();
+         String password=Altagym.etipassword.getText();
          String dni=Altagym.etidni.getText();
-         persona o=new persona(nombre,Apellido,dni,a1,login,password,categoria, cuota,"","user");
+         Cliente o=new Cliente(nombre,Apellido,dni,a1,login,password,categoria, cuota,"","user",diaPago);
          JOptionPane.showMessageDialog(null,"Nombre"+o.getNombre() +o.getApellido() +"Categoria"+ o.getCategoria() +" Pass "+o.getPassword() +o.getLogin());
          
          //(String nombre,String apellido,String DNI, fecha fechaNac,String login,String password,String categoria,int cuota)
@@ -387,25 +389,27 @@ public class DAOGYM {
         
         
         public static boolean CompruebaUser(){
-            DAOUs.MiraTipo();
-                user A=DAOUs.ObtenUser();
-                int pos=DAOUs.BuscaUser(A);
-                if(pos!=-1)
-                DAOGYM.Singletonuser();
-                
-               boolean val=DAOUs.ValidapassLogin(Arraylistgym.U);
-               if(Arraylistgym.U.getTipo().equalsIgnoreCase("admin"))
-               {
+            //DAOUs.MiraTipo();
+            boolean val =false;
+                persona per=null;
+               String email= Login.etiLogin.getText();
+               String pass= Login.etiPass.getText();
+               per = new persona( email, pass);
+               int pos =DAOGYM.buscarfio(per);
+               persona o=Arraylistgym.gym.get(pos);
+               String tipo=o.getTipo();
+               if (tipo.equalsIgnoreCase("admin")){
+               
                    Arraylistgym.tipo=2;
-               }else{
+               }
+               if (tipo.equalsIgnoreCase("user")){
                    Arraylistgym.tipo=0;
                }
-                   
-                if(val==false){
-                    JOptionPane.showMessageDialog(null,"CONTRASEÑA INCORRECTA");
-                    
+                JOptionPane.showMessageDialog(null,"Contraseña escrita:"+Login.etiPass.getText());
+                JOptionPane.showMessageDialog(null,"Contraseña del usuario introducido"+o.getPassword());
+                if(o.getPassword().equalsIgnoreCase(Login.etiPass.getText())){
+                    val=true;
                 }
-                    
               return val;  
         }
         public static int BuscaPorDniSolo(String dni){
@@ -415,13 +419,13 @@ public class DAOGYM {
             return pos;
         }
        
-        public static void CargaSingleton(){
+        public static void CargaSingletonCliCre(){
             
          String nombre="",Apellido="";
          fecha a1=null;
          String categoria="";
          int cuota = 0;
-         nombre=Altagym.etinombre.getText(); //ANRECORDOT DE CAMBIARo PER EL BLLGYM.PIDENOMBRE()
+         nombre=Altagym.etinombre.getText(); 
          Apellido=Altagym.etiapellido.getText();
              String date1 = ((JTextFieldDateEditor) Altagym.etinac.getDateEditor()).getText();
              JOptionPane.showMessageDialog(null,"Fecha Seleccionanda:"+date1);
@@ -450,7 +454,11 @@ public class DAOGYM {
              String login=Altagym.etilogin.getText();
              String password=Altagym.etipassword.getText();
          String dni=Altagym.etidni.getText();
-         Arraylistgym.o=new persona(nombre,Apellido,dni,a1,login,password,categoria, cuota,"");
+         Arraylistgym.C=new Cliente(nombre,Apellido,dni,a1,login,password,categoria, cuota,"","user",1);
+         //super(nombre, apellido, DNI, fechaNac, login, password, categoria, cuota, avatar,tipo);
+        }
+        public static void singletonCli(){
+            
         }
         public static void Singletonuser(){
              user A=DAOUs.ObtenUser();

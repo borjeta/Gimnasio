@@ -19,5 +19,5 @@ public class Arraylistgym {
         public static persona o ;
         public static user U;
         public static int tipo;
-    
+        public static Cliente C;
 }

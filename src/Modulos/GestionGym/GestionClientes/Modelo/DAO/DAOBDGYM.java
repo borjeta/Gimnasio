@@ -10,6 +10,7 @@ import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLBDGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 import Modulos.GestionGym.GestionUsuarios.Modelo.BLL.BLLBDUs;
 import com.mysql.jdbc.CallableStatement;
 import com.mysql.jdbc.PreparedStatement;
@@ -32,12 +33,12 @@ public class DAOBDGYM {
        try {
             stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Gimnasio.Clientes");
             rs = stmt.executeQuery();
-            persona _empf = null;
+            Cliente _empf = null;
            //(String nombre,String apellido,String DNI, fecha fechaNac,String login,String password,String categoria,int cuota) 
 
             while (rs.next()) {
 
-                _empf = new persona();
+                _empf = new Cliente();
                 _empf.setNombre(rs.getString("Nombre"));
                 _empf.setApellido(rs.getString("Apellido"));
                 _empf.setDNI(rs.getString("DNI"));
@@ -49,13 +50,14 @@ public class DAOBDGYM {
                 _empf.setCategoria(rs.getString("Categoria"));
                 _empf.setCuota(rs.getInt("Cuota"));
                 _empf.setTipo(rs.getString("Tipo"));
+                _empf.setDiaPago(rs.getInt("diaPago"));
                 
                 Arraylistgym.gym.add(_empf);
                 
 
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ha habido un problema al obtener los empleados fijos!");
+            JOptionPane.showMessageDialog(null, "Ha habido un problema al obtener los Clientes!");
         } finally {
             if (stmt != null) {
                 try {
@@ -77,24 +79,25 @@ public class DAOBDGYM {
    
             stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Gimnasio.Clientes"
                     + "(Nombre,Apellido,DNI,Fecha_nacimiento,Login"
-                    + ",Password,Categoria,Cuota,Avatar,Tipo) "
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?)");
+                    + ",Password,Categoria,Cuota,Avatar,Tipo,diaPago) "
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
             //(String nombre,String apellido,String DNI, fecha fechaNac,String login,String password,String categoria,int cuota) 
-            stmt.setString(1, Arraylistgym.o.getNombre());
-            stmt.setString(2, Arraylistgym.o.getApellido());
-            stmt.setString(3, Arraylistgym.o.getDNI());
-            stmt.setString(4, Arraylistgym.o.getFechaNac().toString());
+            stmt.setString(1, Arraylistgym.C.getNombre());
+            stmt.setString(2, Arraylistgym.C.getApellido());
+            stmt.setString(3, Arraylistgym.C.getDNI());
+            stmt.setString(4, Arraylistgym.C.getFechaNac().toString());
             //stmt.setString(8, Arraylistgym.o.getFechaCont().toString());
-            stmt.setString(5, Arraylistgym.o.getLogin());
-            stmt.setString(6, Arraylistgym.o.getPassword());
+            stmt.setString(5, Arraylistgym.C.getLogin());
+            stmt.setString(6, Arraylistgym.C.getPassword());
             
          
           //stmt.setInt(9, Arraylistgym.o.getEstado());
-            stmt.setString(7, Arraylistgym.o.getCategoria());
-            stmt.setInt(8, Arraylistgym.o.getCuota());
+            stmt.setString(7, Arraylistgym.C.getCategoria());
+            stmt.setInt(8, Arraylistgym.C.getCuota());
             //JOptionPane.showMessageDialog(null, ped);
-            stmt.setString(9, Arraylistgym.o.getAvatar());
-             stmt.setString(10, Arraylistgym.o.getTipo());
+            stmt.setString(9, Arraylistgym.C.getAvatar());
+            stmt.setString(10, Arraylistgym.C.getTipo());
+            stmt.setInt(11,Arraylistgym.C.getDiaPago());
             resultado=stmt.executeUpdate();
             
             
@@ -120,20 +123,20 @@ public class DAOBDGYM {
   
         try {
             stmt = (PreparedStatement) con.prepareStatement("UPDATE Clientes SET DNI=?,Nombre=?,Apellido=?,Fecha_nacimiento=?"
-                    +",Login=?,Password=?,Categoria=?,Cuota=?,Avatar=?,Tipo=? WHERE DNI=?");
+                    +",Login=?,Password=?,Categoria=?,Cuota=?,Avatar=?,Tipo=?,DiaPago=? WHERE Login=?");
             //Nombre,Apellido,DNI,Fecha_nacimiento,Login"
               //       ",Password,Avatar,Tipo,Estado
-            stmt.setString(1, Arraylistgym.o.getNombre());
-            stmt.setString(2, Arraylistgym.o.getApellido());
-            stmt.setString(3, Arraylistgym.o.getDNI());
-            stmt.setString(4, Arraylistgym.o.getFechaNac().toString());
-            stmt.setString(5, Arraylistgym.o.getLogin());
-            stmt.setString(6, Arraylistgym.o.getPassword());
-            stmt.setString(7,Arraylistgym.o.getCategoria());
-            stmt.setInt(8, Arraylistgym.o.getCuota());
-            stmt.setString(9, Arraylistgym.o.getAvatar());
-            stmt.setString(10,Arraylistgym.o.getTipo());
-            
+            stmt.setString(1, Arraylistgym.C.getNombre());
+            stmt.setString(2, Arraylistgym.C.getApellido());
+            stmt.setString(3, Arraylistgym.C.getDNI());
+            stmt.setString(4, Arraylistgym.C.getFechaNac().toString());
+            stmt.setString(5, Arraylistgym.C.getLogin());
+            stmt.setString(6, Arraylistgym.C.getPassword());
+            stmt.setString(7,Arraylistgym.C.getCategoria());
+            stmt.setInt(8, Arraylistgym.C.getCuota());
+            stmt.setString(9, Arraylistgym.C.getAvatar());
+            stmt.setString(10,Arraylistgym.C.getTipo());
+            stmt.setInt(11,Arraylistgym.C.getDiaPago());
             
             
            
