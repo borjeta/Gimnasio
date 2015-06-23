@@ -3,18 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Vista;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista;
 
 import Clases.Conf;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
-import com.toedter.calendar.JTextFieldDateEditor;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -26,7 +18,7 @@ public class modificafijo extends javax.swing.JFrame {
     /**
      * Creates new form modificafijo
      * @throws java.text.ParseException
-     */public static Conf f =null;
+     */
     public modificafijo() {
         initComponents();
     }
@@ -276,12 +268,7 @@ public class modificafijo extends javax.swing.JFrame {
     }//GEN-LAST:event_etinomKeyReleased
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-/*
-             BLLEFgraf.validatodoModifica();
-             BLLEFgraf.ModificaFijoPager();
-             new PagerFijos().setVisible(true);
-             this.dispose();
-       // listafijo.setModel(DAOEFgrafic.GeneraVecEmpFijo());*/
+
     }//GEN-LAST:event_confirmActionPerformed
     
 

@@ -3,39 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Vista;
-
-import Clases.Conf;
-import Modulos.GestionaEmpleados.ClasesMadre.empleado;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.LinkRadioBt;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.miniSTM;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.pagina;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.renderizaEF;
-import Modulos.menu.FramePpal;
-import java.awt.BorderLayout;
-import static java.awt.SystemColor.menu;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.JOptionPane;
-import javax.swing.JViewport;
-import javax.swing.RowSorter;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -49,17 +18,12 @@ public class PagerFijos extends javax.swing.JFrame {
     /**
      * Creates new form PagerFijos
      */ 
-    
     public PagerFijos() {
         
         try{
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }catch(Exception e){}
-        
-        
         initComponents();
-        
-        
     }
 
     /**
@@ -76,7 +40,7 @@ public class PagerFijos extends javax.swing.JFrame {
         tablafijos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         cmbEntradesMostrades = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -118,10 +82,10 @@ public class PagerFijos extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -208,7 +172,7 @@ public class PagerFijos extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(lblContador, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +199,7 @@ public class PagerFijos extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jLabel1))
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(btnVolver)
                     .addComponent(lblContador, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -326,9 +290,9 @@ public class PagerFijos extends javax.swing.JFrame {
       
     }//GEN-LAST:event_cmbEntradesMostradesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
       
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
        
@@ -362,33 +326,7 @@ public class PagerFijos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCrearActionPerformed
 private void setAmpleColumnes() {
-       /* JViewport scroll = (JViewport) tablafijos.getParent();
-        int ample = scroll.getWidth();
-        int ampleColumna = 0;
-        TableColumnModel modelColumna = tablafijos.getColumnModel();
-        TableColumn columnaTaula;
-        for (int i = 0; i < tablafijos.getColumnCount(); i++) {
-            columnaTaula = modelColumna.getColumn(i);
-            switch (i) {
-                case 0:
-                    ampleColumna = (17 * ample) / 100;
-                    break;
-                case 1:
-                    ampleColumna = (30 * ample) / 100;
-                    break;
-                case 2:
-                    ampleColumna = (18 * ample) / 100;
-                    break;
-                case 3:
-                    ampleColumna = (18 * ample) / 100;
-                    break;
-                case 4:
-                    ampleColumna = (17 * ample) / 100;
-                    break;
-            }
-            columnaTaula.setPreferredWidth(ampleColumna);
-        }
-        */
+   
     }
 
     /**
@@ -406,9 +344,9 @@ private void setAmpleColumnes() {
     public static javax.swing.JButton btnJSON;
     public static javax.swing.JButton btnModificar;
     public static javax.swing.JButton btnTXT;
+    public static javax.swing.JButton btnVolver;
     public static javax.swing.JButton btnXML;
     public static javax.swing.JComboBox cmbEntradesMostrades;
-    public static javax.swing.JButton jButton1;
     public static javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

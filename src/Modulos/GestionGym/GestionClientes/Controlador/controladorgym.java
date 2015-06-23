@@ -10,7 +10,7 @@ import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLBDGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
-import Modulos.GestionGym.GestionClientes.Modelo.DAO.DAOBDGYM;
+
 import Modulos.GestionGym.GestionClientes.Modelo.DAO.DAOGYM;
 import Modulos.GestionGym.GestionClientes.Vista.Altagym;
 import Modulos.GestionGym.GestionClientes.Vista.Login.Login;
@@ -23,8 +23,8 @@ import static Modulos.GestionGym.GestionUsuarios.Controlador.ControladorUser.roo
 import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
 import Modulos.GestionGym.GestionUsuarios.Modelo.DAO.DAOUs;
 import Modulos.GestionGym.GestionUsuarios.Vista.RootMenu;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Controlador.controladorfijos;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Controlador.controladorfijos;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
 import Utils.Menus;
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -622,7 +622,7 @@ Login.addWindowListener(new WindowAdapter() {
                 break;
             case _BTN_AFEGIR:
                 //selec = posicioAbsoluta();
-                Pagergym.dispose();
+                
                 //if (selec == -1) {
                 //} else {
                     Alta.setEnabled(false);

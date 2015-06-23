@@ -3,26 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Vista;
-
-import Clases.fecha;
-import Modulos.GestionaEmpleados.ClasesMadre.empleado;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
-import static Modulos.menu.FramePpal.Crear;
-import Utils.Validacion;
-import com.toedter.calendar.JTextFieldDateEditor;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.ImageObserver;
-import java.text.ParseException;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista;
 
 /**
  *

@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Controlador;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Controlador;
 
 import Clases.fecha;
+import Modulos.GestionGym.GestionClientes.Controlador.controladorgym;
+import Modulos.GestionGym.GestionUsuarios.Vista.RootMenu;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLBD;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.pagina;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
 import Utils.Menus;
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -92,9 +94,9 @@ public class controladorfijos implements ActionListener, KeyListener, MouseListe
     }
 
     private void siEditables() {
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.etinom.setEditable(true);
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.etinac.setEnabled(true);
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.eticon.setEnabled(true);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.etinom.setEditable(true);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.etinac.setEnabled(true);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.eticon.setEnabled(true);
         //Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo.txtSalariBase.setEditable(true);
     }
 
@@ -115,6 +117,7 @@ public class controladorfijos implements ActionListener, KeyListener, MouseListe
         _BTN_TXT,
         _BTN_XML,
         _TAULA,
+        _VOLVER,
         // Finestra FrmAlta
         _BTN_GUARDAR1,
         _BTN_CANCELAR1,
@@ -204,7 +207,11 @@ public class controladorfijos implements ActionListener, KeyListener, MouseListe
                 /*Pagerfijos.btnTancar.setActionCommand("_BTN_TANCAR");
                 Pagerfijos.btnTancar.setName("_BTN_TANCAR");
                 Pagerfijos.btnTancar.addActionListener(this);
-*/
+                
+*/              //BOTO TORNAR AL MENU
+                Pagerfijos.btnVolver.setActionCommand("_VOLVER");
+                Pagerfijos.btnVolver.setName("_VOLVER");
+                Pagerfijos.btnVolver.addActionListener(this);
                 // botó afegir registre
                 Pagerfijos.btnCrear.setActionCommand("_BTN_AFEGIR");
                 Pagerfijos.btnCrear.setName("_BTN_AFEGIR");
@@ -379,7 +386,12 @@ public class controladorfijos implements ActionListener, KeyListener, MouseListe
                 BLLEFgraf.ModificaFijoPager();
                 modifica.dispose();
                 new controladorfijos(new PagerFijos(),1).iniciar(1);
-                              
+                break;
+            case _VOLVER:
+                Pagerfijos.dispose();
+                new controladorgym(new RootMenu(),4).iniciar(4);
+                break;
+                
             case _BTN_SEGUENT:
                 pagina.currentPageIndex += 1;
                 pagina.initLinkBox();

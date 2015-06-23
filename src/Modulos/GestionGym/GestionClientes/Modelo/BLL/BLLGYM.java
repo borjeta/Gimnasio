@@ -137,7 +137,7 @@ public class BLLGYM {
     }
     public static void guardaOcultoXML(){
         Librerias.CLIENTES.xml.generaxmlOcultoGym();
-        Librerias.USUARIOS.XML.generaxmlOcultoGym();
+        
     }
     public static void guardaOcultoTXT(){
         Librerias.CLIENTES.txt.generatxtOcultoClientes();

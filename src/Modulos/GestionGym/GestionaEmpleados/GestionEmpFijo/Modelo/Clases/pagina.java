@@ -5,6 +5,7 @@
  */
 package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
 
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
 import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.pagina.box;
 import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.pagina.itemsPerPage;
 import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.pagina.maxPageIndex;
@@ -38,19 +39,19 @@ public class pagina {
     public static void inicializa() {
         
         int rowCount=0;
-        rowCount = ((STM)Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos.getModel()).getRowCount();
+        rowCount = ((STM)Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos.getModel()).getRowCount();
         int v = rowCount % itemsPerPage == 0 ? 0 : 1;
         maxPageIndex = rowCount / itemsPerPage + v;
 
         box.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.jPanel3.setLayout(new BorderLayout());
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.jPanel3.add(pagina.box);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.jPanel3.setLayout(new BorderLayout());
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.jPanel3.add(pagina.box);
 
     }
 
     public static void initLinkBox() {
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.sorter.setRowFilter(new RowFilter<TableModel, Integer>() {
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.sorter.setRowFilter(new RowFilter<TableModel, Integer>() {
            
             @Override
             public boolean include(RowFilter.Entry<? extends TableModel, ? extends Integer> entry) {
@@ -66,7 +67,7 @@ public class pagina {
             startPageIndex = 1;
         }
     int rowCount=0;
-       rowCount = ((STM)Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos.getModel()).getRowCount();
+       rowCount = ((STM)Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos.getModel()).getRowCount();
 
     int v = rowCount % itemsPerPage == 0 ? 0 : 1;
    
@@ -80,11 +81,11 @@ public class pagina {
     box.removeAll();
       
     if((rowCount<=itemsPerPage)&&(rowCount>0)){//actualizar botones y caja: desactivarlos
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.primero.setEnabled(false);
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ANTERIOR.setEnabled(false);
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.SIGUIENTE.setEnabled(false);
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ultimo.setEnabled(false);
-        Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.CAJA.setText("");
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.primero.setEnabled(false);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ANTERIOR.setEnabled(false);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.SIGUIENTE.setEnabled(false);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ultimo.setEnabled(false);
+        Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.CAJA.setText("");
 
         //actualizar enlaces: sólo 1 enlace
         ButtonGroup bg = new ButtonGroup();
@@ -105,11 +106,11 @@ public class pagina {
 
         if (rowCount == 0) { //no hay rdos
             //actualizar botones y caja: desactivarlos
-            Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.primero.setEnabled(false);
-            Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ANTERIOR.setEnabled(false);
-            Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.SIGUIENTE.setEnabled(false);
-            Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ultimo.setEnabled(false);
-            Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.CAJA.setText("");
+            Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.primero.setEnabled(false);
+            Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ANTERIOR.setEnabled(false);
+            Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.SIGUIENTE.setEnabled(false);
+            Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ultimo.setEnabled(false);
+            Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.CAJA.setText("");
             //actualizar enlaces: no hay enlaces
             ButtonGroup bg = new ButtonGroup();
             box.add(Box.createHorizontalGlue());
@@ -122,11 +123,11 @@ public class pagina {
             
         } else 
             if (rowCount > itemsPerPage) {
-                Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.primero.setEnabled(currentPageIndex > 1);
-                Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ANTERIOR.setEnabled(currentPageIndex > 1);
-                Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.SIGUIENTE.setEnabled(currentPageIndex < maxPageIndex);
-                Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ultimo.setEnabled(currentPageIndex < maxPageIndex);
-                Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.CAJA.setText(Integer.toString(currentPageIndex) + String.format(" / %d", maxPageIndex));
+                Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.primero.setEnabled(currentPageIndex > 1);
+                Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ANTERIOR.setEnabled(currentPageIndex > 1);
+                Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.SIGUIENTE.setEnabled(currentPageIndex < maxPageIndex);
+                Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.ultimo.setEnabled(currentPageIndex < maxPageIndex);
+                Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.CAJA.setText(Integer.toString(currentPageIndex) + String.format(" / %d", maxPageIndex));
 
                 ButtonGroup bg = new ButtonGroup();
                 box.add(Box.createHorizontalGlue());

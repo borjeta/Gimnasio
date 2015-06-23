@@ -17,7 +17,8 @@ public class EmpFijo extends empleado {
 	public EmpFijo(String nombre,int edad,String DNI, String departamento,fecha fechaNac,float sueldo,int antiguedad,fecha fechaCont,String login,String password){
 		super(nombre,DNI,departamento,fechaNac,sueldo,login,password);
 		this.fechaCont=fechaCont;
-		this.setAntiguedad(fechaNac.restafechas());
+		this.setAntiguedad(fechaCont.restafechas());
+                this.setEdad(fechaNac.restafechas());
 		
 	}
         public EmpFijo(){

@@ -3,35 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
 
-import Clases.Conf;
+
 import Clases.fecha;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEF;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM.datos;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM.efi;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOBD;
+
+
 /**
  *
  * @author Borja Alventosa
  */
 public class STM extends AbstractTableModel{
 
-    /**
-     *
-     */
-    //public static Conf f =null;
+    
+    
     public static ArrayList <EmpFijo> datos= new ArrayList<EmpFijo>();
     public static ArrayList <EmpFijo> efi =new ArrayList<EmpFijo>();
     String [] columnas = {"DNI","Nombre", "Departamento", "Fecha nacimiento", "Fecha de contratacion", "Antiguedad","sueldo","Edad"};//Mira que estiga tot correcte
@@ -52,10 +45,12 @@ public class STM extends AbstractTableModel{
     //Devuelve el numero de columnas
     @Override
     public int getColumnCount() { return columnas.length; }
+    
     //Devuelve el valor del objeto en la fila y columna
     @Override
     public String getValueAt(int row, int col) {//Cambia lo de les files y ajusta als parametros
         String dev=null;
+        
         EmpFijo fila = (EmpFijo) datos.get(row);
         switch(col){
             case 0:
@@ -175,7 +170,7 @@ public class STM extends AbstractTableModel{
         EmpFijo o = null;
         
         
-        
+        Librerias.EMPLEADOS.xml.abrir_xmlOcultoEF();
         for(int j=0;j<ArrayListEmpFijo.efi.size();j++) {
            o=ArrayListEmpFijo.efi.get(j);
            
@@ -191,43 +186,7 @@ public class STM extends AbstractTableModel{
               
             }
         }
-    
-     
-     
-/*
-    public void filtra1(String fono,String genero,JTable jTableConModelo){
-            ArrayList<Integer> posiciones=new ArrayList<Integer>();
-            //consultamos por cada item que hay en el agenda
-            for(int i=0;i<datos.size();i++){
-                EmpFijo p=datos.get(i);
-                if(fono.compareTo("todos")!=0)//fijo o movil
-                {
-                    if(fono.compareTo(p.gettipotfno())==0)//segun sea fijo o movil
-                    {
-                        if(genero.compareTo("todos")!=0)
-                        {
-                            if(genero.compareTo(p.getsexo())==0)//segun sea masc o fem
-                                posiciones.add(new Integer(i));
-                        }
-                        else//genero todos
-                            posiciones.add(new Integer(i));
-                    }
-                }
-                else//fono todos
-                {
-                    if(genero.compareTo("todos")!=0)
-                    {
-                        if(genero.compareTo(p.getsexo())==0)//segun sea masc o fem
-                            posiciones.add(new Integer(i));
-                    }
-                    else//genero todos
-                        posiciones.add(new Integer(i));
-                }
-            }
-            for(int i=0;i<posiciones.size();i++)
-                jTableConModelo.addRowSelectionInterval(posiciones.get(i), posiciones.get(i));
-    }
-     */
+
     public EmpFijo buscar(String s) {
         String res;
         for(int i=0;i<datos.size();i++){
@@ -244,13 +203,7 @@ public class STM extends AbstractTableModel{
         return -1;
     }
     
-    public void ordena() {
-        Collections.sort(datos, new OrdenaNombre());//ordeno la agenda por apellidos
-        JOptionPane.showMessageDialog(null,
-                "Apellido menor: "+Collections.min(datos)+
-                "Apellido mayor: "+Collections.max(datos),
-                "Info",JOptionPane.INFORMATION_MESSAGE);
-    }
+    
 }
 
 

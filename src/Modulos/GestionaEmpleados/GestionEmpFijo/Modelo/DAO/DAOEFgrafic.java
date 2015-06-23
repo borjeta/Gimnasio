@@ -6,34 +6,25 @@
 package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
 
 import Clases.fecha;
-import Modulos.GestionaEmpleados.ClasesMadre.empleado;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf.EliminaFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etiCon;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etiNac;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etidepartamento;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etidni;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etifallodepar;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etiCon;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etiNac;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etidepartamento;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etidni;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etifalloDNI;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etifallodepar;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etinombre;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.EliminaFijo;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.EliminaFijo.etinombre;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
+
+
 import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.muestrafijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.pagina;
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
-import java.text.ParseException;
+
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -110,6 +101,7 @@ public class DAOEFgrafic {
          boolean val=false;
          int antiguedad=0;
          String nombre="",departamento="";
+         int edad=0;
          fecha a1=null,a2=null;
          float sueldo = 0.0f;
          nombre=DAOEFgrafic.pideNombreC();
@@ -131,7 +123,7 @@ public class DAOEFgrafic {
          }
          antiguedad=a2.restafechas();
          String dni=CreaEmpFijoFrame.etidni.getText();
-         EmpFijo o=new EmpFijo(nombre,dni,departamento,a1,sueldo,antiguedad,a2);
+         EmpFijo o=new EmpFijo(nombre,edad,dni,departamento,a1,sueldo,antiguedad,a2,"NOLOGIN","");
          o.calcularSueldoFijo(o.getAntiguedad());
          return o;
 //public EmpFijo(String nombre,int edad,String DNI, String departamento,fecha fechaNac,float sueldo,int antiguedad,fecha fechaCont)
@@ -143,7 +135,7 @@ public class DAOEFgrafic {
     }
      public static EmpFijo PideEmpFijomodifica() {
          boolean val=false;
-         int antiguedad=0;
+         int antiguedad=0,edad=0;
          String nombre="",departamento="";
          fecha a1=null,a2=null;
          float sueldo = 0.0f;
@@ -164,12 +156,13 @@ public class DAOEFgrafic {
          else{
              //CreaEmpFijoFrame.etiFalloFecha.setVisible(true);
          }
-         antiguedad=a2.restafechas();
+         
          String dni=modificafijo.etidni.getText();
-         EmpFijo o=new EmpFijo(nombre,a1.restafechas(),dni,departamento,a1,sueldo,antiguedad,a2);
+         EmpFijo o=new EmpFijo(nombre,edad,dni,departamento,a1,sueldo,antiguedad,a2,"NOLOGIN","");
+         //(String nombre,int edad,String DNI, String departamento,fecha fechaNac,float sueldo,int antiguedad,fecha fechaCont,String login,String password)
          o.calcularSueldoFijo(o.getAntiguedad());
          return o;
-//public EmpFijo(String nombre,int edad,String DNI, String departamento,fecha fechaNac,float sueldo,int antiguedad,fecha fechaCont)
+
          
          
          
@@ -196,29 +189,7 @@ public class DAOEFgrafic {
 			}				
 	return modelo;
 }
-    public static void cargardatosFijos(){
-			int Antiguedad=0;
-			
-			int edad=0;
-			EmpFijo o=null;
-			float sueldo=1000.0f;
-		String[] nombres={"Borja","Pablo","Julio","Javier","Miguel"};
-		String[] departamentos={"Seguridad","Marketing","Test Calidad","Producci�n", "Ventas"};
-		fecha[] fechaNacs={new fecha("1994/11/26",1),new fecha("1993/10/7",1),new fecha("1993/7/10",1),new fecha("1994/8/9",1),new fecha("1991/11/3",1)};
-		String[] DNIS={"20416734W","20447497P","31972043L","83723295Y","36272513H"};
-		fecha[] fechaCont={new fecha("2009/10/3",1),new fecha("2010/4/4",2),new fecha("2011/11/23",1),new fecha("2008/10/23",1),new fecha("2009/5/13",1)};
-		for(int i=0;i<5;i++){
-			Antiguedad=fechaCont[i].restafechas();
-			edad=fechaNacs[i].restafechas();
-			o=new EmpFijo(nombres[i],edad,DNIS[i],departamentos[i],fechaNacs[i],sueldo,Antiguedad,fechaCont[i]);
-			
-                          ArrayListEmpFijo.efi.add(o);
-                          
-			
-			
-		
-		}
-		}
+   
     public static String  ObtenDNiFijo(String cod){
         String dni="";
         EmpFijo o=null;
@@ -409,7 +380,7 @@ public class DAOEFgrafic {
     
     public static void eliminaFijo(int pos){
        ArrayListEmpFijo.efi.remove(pos);
-       Librerias.txt.generatxtOcultoEF();
+       Librerias.EMPLEADOS.txt.generatxtOcultoEF();
        // fitxer
         //PagerFijos.tablafijos.setModel(new STM());
         //((STM)PagerFijos.tablafijos.getModel()).cargar();
