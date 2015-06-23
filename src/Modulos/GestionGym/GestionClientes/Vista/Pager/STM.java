@@ -33,10 +33,10 @@ public class STM extends AbstractTableModel{
     //public static Conf f =null;
     public static ArrayList <persona> datos= new ArrayList<persona>();
     public static ArrayList <persona> gym =new ArrayList<persona>();
-    String [] columnas = {"DNI","Nombre", "Apellido", "Fecha nacimiento","Categoria","Cuota","Login"};//Mira que estiga tot correcte
+    String [] columnas = {"DNI","Nombre", "Apellido", "Fecha nacimiento","Categoria","Cuota","Login","Tipo"};//Mira que estiga tot correcte
     Class[] types = new Class [] {
         java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class ,//Ajusta parametros
-        java.lang.String.class, java.lang.String.class, java.lang.String.class};
+        java.lang.String.class, java.lang.String.class, java.lang.String.class,java.lang.String.class};
 
     
     //Devuelve el nombre de la columna
@@ -77,7 +77,11 @@ public class STM extends AbstractTableModel{
                 break;
             case 6:
                 dev=String.valueOf(fila.getLogin());
-           
+                break;
+            case 7:
+                dev=String.valueOf(fila.getTipo());
+                break;
+                    
         }
         
         return dev;
@@ -121,6 +125,9 @@ public class STM extends AbstractTableModel{
                 break;
             case 6:
                 fila.setLogin(value.toString());
+                break;
+            case 7:
+                fila.setTipo(value.toString());
             
                 }
         fireTableCellUpdated(row, col);

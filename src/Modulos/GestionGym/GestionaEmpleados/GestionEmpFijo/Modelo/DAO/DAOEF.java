@@ -1,4 +1,4 @@
-package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
 
 import java.text.ParseException;
 import java.util.ArrayList;

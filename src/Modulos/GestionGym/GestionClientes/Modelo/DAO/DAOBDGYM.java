@@ -138,9 +138,6 @@ public class DAOBDGYM {
             stmt.setString(10,Arraylistgym.C.getTipo());
             stmt.setInt(11,Arraylistgym.C.getDiaPago());
             
-            
-           
-            
 
             resultado = stmt.executeUpdate();
 
@@ -185,25 +182,6 @@ public class DAOBDGYM {
         }
         return resultado;
     }
-    
-    public static void empfMenorMayorDAO(Connection conexion) {
-
-        CallableStatement cstmt = null;
-        String cadena = "";
-        try {
-            cstmt = (CallableStatement) conexion.prepareCall("{call procedure_MaxMinEdad(?,?)}");
-            cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
-            cstmt.execute();
-            cadena = cadena + "Empleado fijo menor: " + cstmt.getInt(1) + " años" + "\n";
-            cadena = cadena + "Empleado fijo mayor: " + cstmt.getInt(2) + " años";
-            JOptionPane.showMessageDialog(null, cadena, "Empleado fijo menor/mayor", 1);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error Logger!");
-        }
-
-    }
-    
     
     public static void RefrescaDatos(){
         BLLGYM.guardaOcultoXML();

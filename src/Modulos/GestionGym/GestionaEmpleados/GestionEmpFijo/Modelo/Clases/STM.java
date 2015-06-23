@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM.datos;
 import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM.efi;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOBD;
 /**
  *
  * @author Borja Alventosa
@@ -172,7 +173,7 @@ public class STM extends AbstractTableModel{
         efi.clear();
         
         EmpFijo o = null;
-        Librerias.txt.abrir_txtOcultoEF();
+        
         
         
         for(int j=0;j<ArrayListEmpFijo.efi.size();j++) {

@@ -188,17 +188,7 @@ public class DAOGYM {
 		}
 		return aux;//retorna aux, si lo ha encontrado dara la posicion, si no devolvera -1 lo cual significa que no hay dni que concuadre
 	}
-    public static DefaultComboBoxModel GeneraVecEmpFijo(){
-        DefaultComboBoxModel modelo=new DefaultComboBoxModel();
-	persona c;
-		int n =Arraylistgym.gym.size();
-			for(int i=0; i<n; i++){
-				c =Arraylistgym.gym.get(i);
-					
-					modelo.addElement(c.getDNI() + " - "+c.getNombre() );
-			}				
-	return modelo;
-}
+   
     public static void cargardatosFijos(){
 			int Antiguedad=0;
 			
@@ -285,24 +275,7 @@ public class DAOGYM {
        // modificafijo.listafijo.setModel(DAOEFgrafic.GeneraVecEmpFijo());
         JOptionPane.showMessageDialog(null,"Lista actualizada");
     }
-   /* public static void pideDni(){
-        
-        boolean val=false;
-        String cad="";
-        cad=etidni.getText();
-        //val=Validacion.DNI(cad);
-        if(Validacion.DNI(cad)==false){
-            CreaEmpFijoFrame.etifalloDNI.setVisible(true);
-            CreaEmpFijoFrame.etidni.requestFocus();
-        }
-        if(CreaEmpFijoFrame.etidni.getText().isEmpty()){
-        CreaEmpFijoFrame.etidni.requestFocus();
-        }
-        if(true==Validacion.DNI(cad)){
-            CreaEmpFijoFrame.etifalloDNI.setVisible(false);
-        }
-        }
-    */
+   
     public static String pideDni(){
          String cad="";
         if(Altagym.etidni.getText().isEmpty()){
@@ -382,42 +355,43 @@ public class DAOGYM {
             }
             int pos=DAOGYM.buscarfijo(Arraylistgym.o);
             Arraylistgym.o=Arraylistgym.gym.get(pos);
-            
-            
     }
   }
         
         
-        public static boolean CompruebaUser(){
+        public static void CompruebaUser(){
             //DAOUs.MiraTipo();
             boolean val =false;
                 persona per=null;
                String email= Login.etiLogin.getText();
                String pass= Login.etiPass.getText();
                per = new persona( email, pass);
+               JOptionPane.showMessageDialog(null,"Contraseña escrita:"+per.getLogin());
+                //JOptionPane.showMessageDialog(null,"Contraseña del usuario introducido"+o.getPassword());
                int pos =DAOGYM.buscarfio(per);
-               persona o=Arraylistgym.gym.get(pos);
-               String tipo=o.getTipo();
-               if (tipo.equalsIgnoreCase("admin")){
-               
-                   Arraylistgym.tipo=2;
+               JOptionPane.showMessageDialog(null,"pos"+pos);
+               if(pos!=-1){
+                        persona o=Arraylistgym.gym.get(pos);
+                        String tipo=o.getTipo();
+                            if (tipo.equalsIgnoreCase("admin")){
+                                JOptionPane.showMessageDialog(null,"Administrador!");
+                                Arraylistgym.tipo=2;
+                                }
+                            if (tipo.equalsIgnoreCase("user")){
+                                JOptionPane.showMessageDialog(null,"Usuario normal");
+                                Arraylistgym.tipo=0;
+                                }
+                            JOptionPane.showMessageDialog(null,"Contraseña escrita:"+Login.etiPass.getText());
+                            JOptionPane.showMessageDialog(null,"Contraseña del usuario introducido"+o.getPassword());
+                            if(o.getPassword().equalsIgnoreCase(Login.etiPass.getText())){
+                                val=true;
+                                }
                }
-               if (tipo.equalsIgnoreCase("user")){
-                   Arraylistgym.tipo=0;
+               if(pos==-1){
+                   Arraylistgym.tipo=-1;
                }
-                JOptionPane.showMessageDialog(null,"Contraseña escrita:"+Login.etiPass.getText());
-                JOptionPane.showMessageDialog(null,"Contraseña del usuario introducido"+o.getPassword());
-                if(o.getPassword().equalsIgnoreCase(Login.etiPass.getText())){
-                    val=true;
-                }
-              return val;  
         }
-        public static int BuscaPorDniSolo(String dni){
-            int pos = -1;
-            persona o=new persona (dni);
-            pos=DAOGYM.buscarfijo(o);
-            return pos;
-        }
+        
        
         public static void CargaSingletonCliCre(){
             

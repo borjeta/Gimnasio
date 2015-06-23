@@ -11,14 +11,14 @@
       <fecha>1990/6/21</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1434466826145</time>
+        <time>1435055653439</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1090137573855</time>
+              <time>-1089548746561</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -90,7 +90,7 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-16 17:00:26.145 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-23 12:34:13.439 CEST</defaultCenturyStart>
             <formatData serialization="custom">
               <java.text.DateFormatSymbols>
                 <default>
@@ -4271,14 +4271,14 @@
       <fecha>1990/5/12</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1434466826146</time>
+        <time>1435055653439</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1090137573854</time>
+              <time>-1089548746561</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -4350,7 +4350,7 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-16 17:00:26.146 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-23 12:34:13.439 CEST</defaultCenturyStart>
             <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
             <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
             <pattern>yyyy/MM/dd</pattern>
@@ -4382,14 +4382,14 @@
       <fecha>1994/11/26</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1434466826146</time>
+        <time>1435055653440</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1090137573854</time>
+              <time>-1089548746560</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -4461,7 +4461,7 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-16 17:00:26.146 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-23 12:34:13.440 CEST</defaultCenturyStart>
             <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
             <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
             <pattern>yyyy/MM/dd</pattern>
@@ -4493,14 +4493,14 @@
       <fecha>1987/10/2</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1434466826146</time>
+        <time>1435055653440</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1090137573854</time>
+              <time>-1089548746560</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -4572,7 +4572,7 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-16 17:00:26.146 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-23 12:34:13.440 CEST</defaultCenturyStart>
             <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
             <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
             <pattern>yyyy/MM/dd</pattern>

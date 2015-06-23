@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
 
 import Clases.fecha;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
@@ -27,21 +27,18 @@ public class DAOBD {
 
         ArrayListEmpFijo.efi.clear();
         try {
-            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Gimnasio.Clientes");
+            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Gimnasio.Fijos");
             rs = stmt.executeQuery();
-            persona _empf = null;
+            EmpFijo _empf = null;
            
 
             while (rs.next()) {
 
-                _empf = new persona();
+                _empf = new EmpFijo();
                 _empf.setNombre(rs.getString("Nombre"));
-                _empf.setApellido(rs.getString("Apellido"));
-                
                 _empf.setDNI(rs.getString("DNI"));
                 fechanac = new fecha(rs.getString("fecha_nacimiento"));
                 _empf.setFechaNac(fechanac);
-                
                 _empf.setLogin(rs.getString("login"));
                 _empf.setPassword(rs.getString("password"));
                 _empf.setAvatar(rs.getString("avatar"));
@@ -178,39 +175,9 @@ public class DAOBD {
         return resultado;
     }
     
-    public void empfMenorMayorDAO(Connection conexion) {
-
-        CallableStatement cstmt = null;
-        String cadena = "";
-        try {
-            cstmt = (CallableStatement) conexion.prepareCall("{call procedure_MaxMinEdad(?,?)}");
-            cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
-            cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
-            cstmt.execute();
-            cadena = cadena + "Empleado fijo menor: " + cstmt.getInt(1) + " años" + "\n";
-            cadena = cadena + "Empleado fijo mayor: " + cstmt.getInt(2) + " años";
-            JOptionPane.showMessageDialog(null, cadena, "Empleado fijo menor/mayor", 1);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error Logger!");
-        }
-
-    }
     
-    public void EdadMediaDAO(Connection conexion) {
-
-        CallableStatement cstmt = null;
-        String cadena = "";
-        try {
-            cstmt = (CallableStatement) conexion.prepareCall("{call pocedure_EdadMedia(?)}");
-            cstmt.registerOutParameter(1, java.sql.Types.DOUBLE);
-            cstmt.execute();
-            cadena = cadena + "Edad media de los empleados: " + (int)cstmt.getDouble(1) + " años";
-            JOptionPane.showMessageDialog(null, cadena, "Edad media", 1);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error Logger!");
-        }
-
-    }
+    
+    
     
     
 

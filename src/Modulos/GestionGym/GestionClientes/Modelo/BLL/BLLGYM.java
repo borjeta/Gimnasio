@@ -135,10 +135,6 @@ public class BLLGYM {
     public static void ObtenSeleccionadoCompleto(){
        DAOGYM.ObtenSeleccionadoCompleto();
     }
-    public static int BuscaSoloPorDni(String dni){
-      int   pos = DAOGYM.BuscaPorDniSolo(dni);
-        return pos ;
-    }
     public static void guardaOcultoXML(){
         Librerias.CLIENTES.xml.generaxmlOcultoGym();
         Librerias.USUARIOS.XML.generaxmlOcultoGym();
@@ -147,9 +143,8 @@ public class BLLGYM {
         Librerias.CLIENTES.txt.generatxtOcultoClientes();
         
     }
-    public static boolean compruebauser(){
-        boolean val=DAOGYM.CompruebaUser();
-        return val;
+    public static void compruebauser(){
+        DAOGYM.CompruebaUser();
     }
     public static void refrescatabla(){
         DAOGYM.refrescatabla();

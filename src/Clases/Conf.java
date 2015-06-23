@@ -3,6 +3,8 @@ package Clases;
 import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
 import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
 import java.text.ParseException;
 
 
@@ -23,6 +25,7 @@ public class Conf {
 		
                 Arraylistgym.gym= new ArrayList<persona>();
                 Arraylistgym.us= new ArrayList<user>();
+                ArrayListEmpFijo.efi=new ArrayList<EmpFijo>();
                 
                 
 		numdecimal=1;

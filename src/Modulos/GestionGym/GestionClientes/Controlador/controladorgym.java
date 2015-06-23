@@ -19,9 +19,12 @@ import Modulos.GestionGym.GestionClientes.Vista.Pager.STM;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.modificagym;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.pagina;
 import Modulos.GestionGym.GestionUsuarios.Controlador.ControladorUser;
+import static Modulos.GestionGym.GestionUsuarios.Controlador.ControladorUser.rootmenu;
 import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
 import Modulos.GestionGym.GestionUsuarios.Modelo.DAO.DAOUs;
 import Modulos.GestionGym.GestionUsuarios.Vista.RootMenu;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Controlador.controladorfijos;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
 import Utils.Menus;
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
@@ -56,7 +59,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class controladorgym implements ActionListener, KeyListener, MouseListener, FocusListener{
     
-
+    public static RootMenu rootmenu=new RootMenu();
     public  static PagerGym Pagergym = new PagerGym();
     public static Altagym Alta=new Altagym();
     public static modificagym modifica= new modificagym();
@@ -97,6 +100,10 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 break;
             case 3:
                 Login=(Login) frm;
+                break;
+            case 4: 
+                rootmenu=(RootMenu) frm;
+                break;
         }
         
     }
@@ -145,7 +152,14 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         //Finestra Login
         _BTN_OLVIDARPAS,
         _BTN_ACEPTARLOG,
-        _BTN_HAZTEUS
+        _BTN_HAZTEUS,
+        
+        //Finestra ROOT MENU
+        
+        _BTN_ListaCli,
+        _BTN_ListaUs
+        
+        
         
         
         
@@ -413,6 +427,19 @@ Login.addWindowListener(new WindowAdapter() {
                     }
                 });
                 break;
+            case 4:
+                 //Finestra de ROOT MENU
+                rootmenu.setVisible(true);
+                rootmenu.setResizable(false);
+                rootmenu.setLocationRelativeTo(null);
+                rootmenu.btListaCli.setActionCommand("_BTN_ListaCli");
+                rootmenu.btListaCli.setName("_BTN_ListaCli");
+                rootmenu.btListaCli.addActionListener(this);
+                
+                rootmenu.btListaUs.setActionCommand("_BTN_ListaUs");
+                rootmenu.btListaUs.setName("_BTN_ListaUs");
+                rootmenu.btListaUs.addActionListener(this);
+                break;
                 
         
         }
@@ -425,19 +452,18 @@ Login.addWindowListener(new WindowAdapter() {
         switch (Accion.valueOf(ae.getActionCommand())) {
             //FINESTRA LOGIN
             case _BTN_ACEPTARLOG:
-                boolean val=BLLGYM.compruebauser();
-                JOptionPane.showMessageDialog(null,val);
-                if (val==true){
-                    //if(Arraylistgym.tipo==2){
-                        new ControladorUser(new RootMenu(),1).iniciar(1);
-                    //}
+                BLLGYM.compruebauser();
+                JOptionPane.showMessageDialog(null,"Arraylistgym.tipo="+Arraylistgym.tipo);
+                if (Arraylistgym.tipo==2){
+                        new controladorgym(new RootMenu(),4).iniciar(4);
+                        Login.dispose();
+                }
                     if(Arraylistgym.tipo==0){
                         new controladorgym(new PagerGym(),0).iniciar(0);
+                        Login.dispose();
                     }
-                }
-                else{
-                    
-                    Login.dispose();
+                if(Arraylistgym.tipo==-1){
+                    JOptionPane.showMessageDialog(null,"Usuario Incorrecto");
                 }
             JOptionPane.showMessageDialog(null,Arraylistgym.tipo);
                 break;
@@ -450,11 +476,21 @@ Login.addWindowListener(new WindowAdapter() {
                // pagina.initLinkBox();
                 //tablafijos.addRowSelectionInterval(0, 0);
                 break;
+                 //Finestra ROOT MENU
+            case _BTN_ListaCli:
+                rootmenu.dispose();
+                new controladorgym(new PagerGym(), 0).iniciar(0);
+                rootmenu.dispose();
+                break;
+            case _BTN_ListaUs:
+                new controladorfijos(new PagerFijos(), 0).iniciar(0);
+                rootmenu.dispose();
+                break;
             case _confirmar:
                 BLLGYM.ModificaCliPager();
                 modifica.dispose();
                 new controladorgym(new PagerGym(),0).iniciar(0);
-                           break;   
+                break;   
             case _BTN_SEGUENT:
                 pagina.currentPageIndex += 1;
                 pagina.initLinkBox();
