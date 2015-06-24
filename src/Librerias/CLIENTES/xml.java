@@ -3,6 +3,7 @@ package Librerias.CLIENTES;
 
 import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.Annotations;
 import com.thoughtworks.xstream.converters.basic.DateConverter;
@@ -33,7 +34,7 @@ public class xml {
 			OutputStream os = new ByteArrayOutputStream();
 			OutputStreamWriter osw = new OutputStreamWriter(os);
 			XStream xstream = new XStream();
-			Annotations.configureAliases(xstream, persona.class);
+			Annotations.configureAliases(xstream, Cliente.class);
 
             String header = "<?xml version=\"1.0\" encoding=\"" + ENCODING + "\"?>\n";
             xstream.toXML(Arraylistgym.gym, osw);
@@ -67,7 +68,7 @@ public class xml {
             try (OutputStream os = new ByteArrayOutputStream(); 
                     OutputStreamWriter osw = new OutputStreamWriter(os)) {
                 XStream xstream = new XStream();
-                Annotations.configureAliases(xstream, persona.class);
+                Annotations.configureAliases(xstream, Cliente.class);
                 
                 String header = "<?xml version=\"1.0\" encoding=\"" + ENCODING + "\"?>\n";
                 xstream.toXML(Arraylistgym.gym, osw);
@@ -94,18 +95,18 @@ public class xml {
     
     
     
-    public static ArrayList<persona> abrir_xmlgym() {
+    public static ArrayList<Cliente> abrir_xmlgym() {
     	String PATH=null;
     	try {
             XStream xstream = new XStream();
-            Annotations.configureAliases(xstream, persona.class);
+            Annotations.configureAliases(xstream, Cliente.class);
  
             JFileChooser fileChooser = new JFileChooser();
             int seleccion = fileChooser.showOpenDialog(null);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
             	File JFC = fileChooser.getSelectedFile();
                 PATH = JFC.getAbsolutePath();
-                Arraylistgym.gym = (ArrayList <persona>)xstream.fromXML(new FileReader(PATH));
+                Arraylistgym.gym = (ArrayList <Cliente>)xstream.fromXML(new FileReader(PATH));
             }
             
         } catch (Exception e1) {
@@ -114,14 +115,14 @@ public class xml {
         return Arraylistgym.gym;
     }
     
-          public static ArrayList<persona> abrir_xmlOcultgym() {
+          public static ArrayList<Cliente> abrir_xmlOcultgym() {
     	String PATH=null;
     	try {
             XStream xstream = new XStream();
-            Annotations.configureAliases(xstream, persona.class);
+            Annotations.configureAliases(xstream, Cliente.class);
                                                              
             PATH = new java.io.File(".").getCanonicalPath()+"/src/Modulos/GestionGym/GestionClientes/Modelo/Archivos/Clientes.xml";
-            Arraylistgym.gym = (ArrayList <persona>)xstream.fromXML(new FileReader(PATH));
+            Arraylistgym.gym = (ArrayList <Cliente>)xstream.fromXML(new FileReader(PATH));
             
         } catch (Exception e1) {
         	JOptionPane.showMessageDialog(null, "Error al leer el XML", "Error", JOptionPane.ERROR_MESSAGE);

@@ -75,8 +75,8 @@ public class DAOBDGYM {
         PreparedStatement stmt = null;
         int resultado=0;
         try {
-            DAOGYM.CargaSingleton();
-   
+            
+            DAOGYM.CargaSingletonCliCre();
             stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Gimnasio.Clientes"
                     + "(Nombre,Apellido,DNI,Fecha_nacimiento,Login"
                     + ",Password,Categoria,Cuota,Avatar,Tipo,diaPago) "
@@ -86,15 +86,10 @@ public class DAOBDGYM {
             stmt.setString(2, Arraylistgym.C.getApellido());
             stmt.setString(3, Arraylistgym.C.getDNI());
             stmt.setString(4, Arraylistgym.C.getFechaNac().toString());
-            //stmt.setString(8, Arraylistgym.o.getFechaCont().toString());
             stmt.setString(5, Arraylistgym.C.getLogin());
             stmt.setString(6, Arraylistgym.C.getPassword());
-            
-         
-          //stmt.setInt(9, Arraylistgym.o.getEstado());
             stmt.setString(7, Arraylistgym.C.getCategoria());
             stmt.setInt(8, Arraylistgym.C.getCuota());
-            //JOptionPane.showMessageDialog(null, ped);
             stmt.setString(9, Arraylistgym.C.getAvatar());
             stmt.setString(10, Arraylistgym.C.getTipo());
             stmt.setInt(11,Arraylistgym.C.getDiaPago());

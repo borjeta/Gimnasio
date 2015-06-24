@@ -1,6 +1,7 @@
 package Librerias.CLIENTES;
 import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -50,7 +51,7 @@ public class txt {
         }
     }
     
-  public static ArrayList<persona> abrir_txtClientes() {
+  public static ArrayList<Cliente> abrir_txtClientes() {
     	String PATH = null;
         try {
             File f;
@@ -63,7 +64,7 @@ public class txt {
                 
                 FileInputStream fi=new FileInputStream(f);
     			ObjectInputStream oi=new ObjectInputStream(fi);
-    			Arraylistgym.gym = (ArrayList<persona>)oi.readObject();
+    			Arraylistgym.gym = (ArrayList<Cliente>)oi.readObject();
     			oi.close();
             }
         } catch (Exception e) {
@@ -72,7 +73,7 @@ public class txt {
     	return Arraylistgym.gym;
     }
     
-    public static ArrayList<persona> abrir_txtOcultoClientes() {
+    public static ArrayList<Cliente> abrir_txtOcultoClientes() {
     	String PATH = null;
         try {
             File f;
@@ -82,7 +83,7 @@ public class txt {
                 
                 FileInputStream fi=new FileInputStream(f);
     			ObjectInputStream oi=new ObjectInputStream(fi);
-    			Arraylistgym.gym = (ArrayList<persona>)oi.readObject();
+    			Arraylistgym.gym = (ArrayList<Cliente>)oi.readObject();
     			oi.close();
             
         } catch (Exception e) {

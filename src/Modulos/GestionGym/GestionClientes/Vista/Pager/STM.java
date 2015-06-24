@@ -9,6 +9,7 @@ import Clases.Conf;
 import Clases.fecha;
 import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 
 
 import java.text.ParseException;
@@ -31,8 +32,8 @@ public class STM extends AbstractTableModel{
      *
      */
     //public static Conf f =null;
-    public static ArrayList <persona> datos= new ArrayList<persona>();
-    public static ArrayList <persona> gym =new ArrayList<persona>();
+    public static ArrayList <Cliente> datos= new ArrayList<Cliente>();
+    public static ArrayList <Cliente> gym =new ArrayList<Cliente>();
     String [] columnas = {"DNI","Nombre", "Apellido", "Fecha nacimiento","Categoria","Cuota","Login","Tipo"};//Mira que estiga tot correcte
     Class[] types = new Class [] {
         java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class ,//Ajusta parametros
@@ -55,7 +56,7 @@ public class STM extends AbstractTableModel{
     @Override
     public String getValueAt(int row, int col) {//Cambia lo de les files y ajusta als parametros
         String dev=null;
-        persona fila = (persona) datos.get(row);
+        Cliente fila = (Cliente) datos.get(row);
         switch(col){
             case 0:
                 dev=fila.getDNI();
@@ -103,7 +104,7 @@ public class STM extends AbstractTableModel{
     
     //Actualiza un objeto de una fila y columna
     public void setValueAt(String value, int row, int col) throws ParseException {
-        persona  fila = (persona) datos.get(row);
+        Cliente  fila = (Cliente) datos.get(row);
         switch(col){
             case 0:
                 fila.setDNI(value.toString());
@@ -135,7 +136,7 @@ public class STM extends AbstractTableModel{
     
     
     //Añade una fila al modelo
-    public void addRow(persona p) {
+    public void addRow(Cliente p) {
         datos.add(p);
         fireTableDataChanged();
     }
@@ -148,13 +149,13 @@ public class STM extends AbstractTableModel{
     }
     
     
-    public ArrayList<persona> getdatos() {
+    public ArrayList<Cliente> getdatos() {
         return datos;
     }
     
 
     
-    public void setdatos(ArrayList<persona> a) {
+    public void setdatos(ArrayList<Cliente> a) {
         limpiarfilas();
         for(int i=0;i<a.size();i++)
             addRow(a.get(i));
@@ -172,7 +173,7 @@ public class STM extends AbstractTableModel{
         datos.clear();
         gym.clear();
         
-        persona o = null;
+        Cliente o = null;
         
         Librerias.CLIENTES.xml.abrir_xmlOcultgym();
         
@@ -230,7 +231,7 @@ public class STM extends AbstractTableModel{
                 jTableConModelo.addRowSelectionInterval(posiciones.get(i), posiciones.get(i));
     }
      */
-    public persona buscar(String s) {
+    public Cliente buscar(String s) {
         String res;
         for(int i=0;i<datos.size();i++){
             res = datos.get(i).toString();
@@ -239,7 +240,7 @@ public class STM extends AbstractTableModel{
         }
         return null;
     }
-    public int buscapersona(persona p) {
+    public int buscaCliente(Cliente p) {
         for(int i=0;i<datos.size();i++)
             if(datos.get(i).equals(p))
                return i;

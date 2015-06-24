@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.BLL;
 
-import Clases.DAOBD;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOBD;
 import Clases.conexion;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import com.mysql.jdbc.Connection;
@@ -18,17 +18,17 @@ public class BLLBD {
     public static void CreaEmpFijoNou(){
         java.sql.Connection A=conexion.connectar();
         
-        DAOBD.ListaEmpleatFixDAO(A);
+        DAOBD.listAllempFDAO(A);
         conexion.desconnectar(A);
     }
     public static void modificaEmpFijo(){
         java.sql.Connection A=conexion.connectar();
-        DAOBD.modificar(ArrayListEmpFijo.o, A);
+        DAOBD.modificarUsuarioDAO(A);
         conexion.desconnectar(A);
     }
     public static void listaEmpFijos(){
         java.sql.Connection A=conexion.connectar();
-        DAOBD.ListaEmpleatFixDAO(A);
+        DAOBD.listAllempFDAO(A);
         conexion.desconnectar(A);
     }
     public static void EliminafijoBD(){

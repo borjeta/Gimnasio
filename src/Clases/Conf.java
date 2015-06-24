@@ -2,6 +2,7 @@ package Clases;
 
 import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
@@ -23,7 +24,7 @@ public class Conf {
 
 	public Conf(){
 		
-                Arraylistgym.gym= new ArrayList<persona>();
+                Arraylistgym.gym= new ArrayList<Cliente>();
                 Arraylistgym.us= new ArrayList<user>();
                 ArrayListEmpFijo.efi=new ArrayList<EmpFijo>();
                 

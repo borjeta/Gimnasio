@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.BLL;
 
 import Clases.conexion;
 import Clases.fecha;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf.EliminaFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
+import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.EliminaFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
-import static Modulos.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
+
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.sql.Connection;
@@ -32,7 +30,7 @@ public class BLLEFgraf {
         EmpFijo o=null;
     o=DAOEFgrafic.PideEmpFijo();
     ArrayListEmpFijo.efi.add(o);
-    Librerias.txt.generatxtOcultoEF();
+    Librerias.EMPLEADOS.txt.generatxtOcultoEF();
     
     
 }
@@ -87,7 +85,7 @@ public class BLLEFgraf {
             }
             BLLEFgraf.cambiatodo(b);
             ArrayListEmpFijo.efi.set(pos, b);
-            Librerias.xml.generaxmlOcultoEF();
+            Librerias.EMPLEADOS.xml.generaxmlOcultoEF();
             //modificafijo.listafijo.setModel(DAOEFgrafic.GeneraVecEmpFijo());
            // DAOEFgrafic.refrescaListaMo();
             
@@ -151,10 +149,10 @@ public class BLLEFgraf {
         return pos ;
     }
     public static void guardaOcultoXML(){
-        Librerias.xml.generaxmlOcultoEF();
+        Librerias.EMPLEADOS.xml.generaxmlOcultoEF();
     }
     public static void guardaOcultoTXT(){
-        Librerias.txt.generatxtOcultoEF();
+        Librerias.EMPLEADOS.txt.generatxtOcultoEF();
     }
 /*    public static boolean guardarM(EmpFijo ef) {
             Connection conn = conexion.connectar();

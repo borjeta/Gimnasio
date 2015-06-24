@@ -132,6 +132,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         _BTN_TXT,
         _BTN_XML,
         _TAULA,
+        _VOLVER,
         // Finestra FrmAlta
         _BTN_GUARDAR1,
         _BTN_CANCELAR1,
@@ -232,10 +233,10 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 Pagergym.ANTERIOR.setName("_BTN_ANTERIOR");
                 Pagergym.ANTERIOR.addActionListener(this);
                 // botó tancar finestra
-                /*Pagergym.btnTancar.setActionCommand("_BTN_TANCAR");
-                Pagergym.btnTancar.setName("_BTN_TANCAR");
-                Pagergym.btnTancar.addActionListener(this);
-*/
+                Pagergym.btnVolver.setActionCommand("_VOLVER");
+                Pagergym.btnVolver.setName("_VOLVER");
+                Pagergym.btnVolver.addActionListener(this);
+
                 // botó afegir registre
                 Pagergym.btnCrear.setActionCommand("_BTN_AFEGIR");
                 Pagergym.btnCrear.setName("_BTN_AFEGIR");
@@ -319,7 +320,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
 
             case 2: // Finestra FrmModiEF
 
-                modifica.setTitle("Empleat Fix: MODIFICAR");
+                modifica.setTitle("Modificación de cliente");
                 modifica.setVisible(true);
                 modifica.setResizable(false);
                 modifica.setLocationRelativeTo(null);
@@ -329,12 +330,12 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 modifica.etifallonom.setVisible(false);
                 modifica.etidnirep.setVisible(false);
         //Carga los datos del empleado seleccionado en los campos para modificar
-                modifica.etinom.setText(Arraylistgym.o.getNombre());
-                modifica.etiape.setText(Arraylistgym.o.getApellido());
-                modifica.etidni.setText(Arraylistgym.o.getDNI());
-                modifica.eticuota.setText(String.valueOf(Arraylistgym.o.getCuota()));
-        ((JTextFieldDateEditor)modifica.etinac.getDateEditor()).setText(Arraylistgym.o.getFechaNac().toString());
-        
+                modifica.etinom.setText(Arraylistgym.C.getNombre());
+                modifica.etiape.setText(Arraylistgym.C.getApellido());
+                modifica.etidni.setText(Arraylistgym.C.getDNI());
+                modifica.eticuota.setText(String.valueOf(Arraylistgym.C.getCuota()));
+        ((JTextFieldDateEditor)modifica.etinac.getDateEditor()).setText(Arraylistgym.C.getFechaNac().toString());
+                
 ;
                         
                 // icono de la finestra
@@ -482,6 +483,14 @@ Login.addWindowListener(new WindowAdapter() {
                 new controladorgym(new PagerGym(), 0).iniciar(0);
                 rootmenu.dispose();
                 break;
+            case _VOLVER:
+                Pagergym.dispose();
+                if(Arraylistgym.tipo==2){
+                    new controladorgym(new RootMenu(),4).iniciar(4);
+                }
+                else
+                    new controladorgym(new Login(),3).iniciar(3);
+                    break;
             case _BTN_ListaUs:
                 new controladorfijos(new PagerFijos(), 0).iniciar(0);
                 rootmenu.dispose();
@@ -551,7 +560,7 @@ Login.addWindowListener(new WindowAdapter() {
                         BLLGYM.creaCli();
                         BLLGYM.guardaOcultoTXT();
                         BLLGYM.guardaOcultoXML();
-                        int pos =DAOGYM.buscarfijo(Arraylistgym.o);
+                        int pos =DAOGYM.buscarfijo(Arraylistgym.C);
                         if (pos!=-1){
                            JOptionPane.showMessageDialog(null,"El Login introducido ya se encuentra en la base de datos");
                             }
@@ -577,9 +586,10 @@ Login.addWindowListener(new WindowAdapter() {
                         BLLGYM.guardaOcultoXML();
                         //JOptionPane.showMessageDialog(null,"Modificado con éxito");
                         modifica.dispose();
-                        //BLLGYM.refrescatabla();
-                        new controladorgym(new PagerGym(), 0).iniciar(0);
                         
+                        
+                        new controladorgym(new PagerGym(), 0).iniciar(0);
+                        BLLGYM.refrescatabla();
                         
                         
                              //ef = this.guardarM();
@@ -641,6 +651,7 @@ Login.addWindowListener(new WindowAdapter() {
                 
                 if (selec == -1) {
                 } else {
+                    JOptionPane.showMessageDialog(null,"Posicion absoluta:"+selec);
                    String dni = (String) Pagergym.tablagym.getModel().getValueAt(selec, 6);
                    Arraylistgym.o = new persona(dni,"");
                     BLLGYM.ObtenSeleccionadoCompleto();
@@ -659,17 +670,10 @@ Login.addWindowListener(new WindowAdapter() {
             case _BTN_ELIMINAR:
                 
             {
-               /* if (selec == -1) {
-                     Menus.warning("Selecciona primer", "Atenció!");
-                     selec= ((STM)Pagergym.tablagym.getModel()).getRowCount();
-                     JOptionPane.showMessageDialog(null,"POSICION:"+selec);
-                } else {
-                    //
-                   */DAOGYM.ObtenSelecionado();
-                    
+                    DAOGYM.ObtenSelecionado();
                     if(Arraylistgym.tipo==1){
-                        JOptionPane.showMessageDialog(null,"debes de ser administrador para borrar un cliente");
-                        break;
+                    JOptionPane.showMessageDialog(null,"debes de ser administrador para borrar un cliente");
+                    break;
                     }else{
                     BLLGYM.EliminaFijo();
                     BLLBDGYM.EliminaCliBD();
@@ -865,7 +869,7 @@ Login.addWindowListener(new WindowAdapter() {
         int n, selection, inicio, selection1 = 0;
         n = ((STM) Pagergym.tablagym.getModel()).getRowCount();
         if (n != 0) {
-            inicio = (pagina.currentPageIndex ) * pagina.itemsPerPage;//Despues del currentPageIndex habia un -1; dins del parentesis
+            inicio = (pagina.currentPageIndex -1 ) * pagina.itemsPerPage;//Despues del currentPageIndex habia un -1; dins del parentesis
             selection = Pagergym.tablagym.getSelectedRow();
             selection1 = inicio + selection;
         } else {

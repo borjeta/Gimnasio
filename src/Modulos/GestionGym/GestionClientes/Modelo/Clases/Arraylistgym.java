@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author Borja Alventosa
  */
 public class Arraylistgym {
-    public static ArrayList <persona> gym;
+    public static ArrayList <Cliente> gym;
     public static ArrayList <user> us;
         public static persona o ;
         public static user U;

@@ -10,6 +10,7 @@ import Modulos.ClasesMadre.persona;
 import static Modulos.GestionGym.GestionClientes.Controlador.controladorgym.Pagergym;
 import static Modulos.GestionGym.GestionClientes.Controlador.controladorgym.sorter;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
+import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 import Modulos.GestionGym.GestionClientes.Modelo.DAO.DAOGYM;
 import Modulos.GestionGym.GestionClientes.Vista.Altagym;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.PagerGym;
@@ -43,7 +44,7 @@ public class BLLGYM {
         persona o;
         DAOGYM.rellenaDatosCliMod();
     }
-    public static persona cambiatodo(persona o) {
+    public static Cliente cambiatodo(Cliente o) {
         
         
         DAOGYM.cambiaDNI(o);
@@ -94,8 +95,8 @@ public class BLLGYM {
     }
     public static void ModificaCliPager(){
         DAOGYM.ObtenSelecionado();
-        int pos=DAOGYM.buscarfijo(Arraylistgym.o);
-        persona ef=Arraylistgym.gym.get(pos);
+        int pos=DAOGYM.buscarfijo(Arraylistgym.C);
+        Cliente ef=Arraylistgym.gym.get(pos);
        ef= BLLGYM.cambiatodo(ef);
         Arraylistgym.gym.set(pos, ef);
         BLLGYM.guardaOcultoXML();
@@ -119,13 +120,14 @@ public class BLLGYM {
             DNI=Altagym.etidni.getText();
             a=new persona(DNI);
             int pos=DAOGYM.buscarfijo(a);
-            b=Arraylistgym.gym.get(pos);
+            
+            if(pos==-1){
             val1=Validacion.validaNombre(Altagym.etinombre.getText());
             val2=Validacion.DNI(Altagym.etidni.getText());
             val3=Validacion.validaNombre(Altagym.etiapellido.getText());
             String date1 = ((JTextFieldDateEditor) Altagym.etinac.getDateEditor()).getText();
             a1=new fecha(date1);
-            
+            }
                 
             if((val1==true)&&(val2==true)&&(val3==true)){
                 val=true;

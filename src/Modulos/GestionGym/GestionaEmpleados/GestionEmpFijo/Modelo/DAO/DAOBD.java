@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Borja Alventosa
  */
 public class DAOBD {
-        public void listAllempFDAO(Connection con) {
+        public static void listAllempFDAO(Connection con) {
         ResultSet rs = null;
         PreparedStatement stmt = null;
         fecha fechanac, fechacont;
@@ -66,7 +66,7 @@ public class DAOBD {
     }
     
     
-    public int nuevoEmpfDAO(Connection con) {
+    public static  int nuevoEmpfDAO(Connection con) {
         PreparedStatement stmt = null;
         int resultado=0;
         try {
@@ -108,7 +108,7 @@ public class DAOBD {
         return resultado;
     }
     
-    public int modificarUsuarioDAO(Connection con) {
+    public static  int modificarUsuarioDAO(Connection con) {
 
         PreparedStatement stmt = null;
         int resultado=0;
@@ -153,7 +153,7 @@ public class DAOBD {
 
     }
     
-    public int borrarEmpleadofijoDAO(Connection con) {
+    public static int borrarEmpleadofijoDAO(Connection con) {
         int resultado=0;
         PreparedStatement stmt = null;
 

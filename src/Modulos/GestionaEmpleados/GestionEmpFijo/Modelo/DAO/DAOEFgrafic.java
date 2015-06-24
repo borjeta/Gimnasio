@@ -221,7 +221,7 @@ public class DAOEFgrafic {
         int edad=a1.restafechas();
         int antiguedad=a2.restafechas();
         float sueldo=1000.0f;
-       EmpFijo o = new EmpFijo(nombre,edad,DNI,departamento,a1,sueldo,antiguedad,a2,);//Construcctor que li falta avatar , estado tipo pass y log
+       EmpFijo o = new EmpFijo(nombre,edad,DNI,departamento,a1,sueldo,antiguedad,a2);//Construcctor que li falta avatar , estado tipo pass y log
             
     }
     public void ObtenDatos(){

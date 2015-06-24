@@ -179,7 +179,7 @@ public class DAOGYM {
          
      
     }
-    public static int buscarfijo(persona ef){//Buscar
+    public static int buscarfijo(Cliente ef){//Buscar
 		int aux=-1;
 		
 		for (int i = 0; i<=(Arraylistgym.gym.size()-1); i++){
@@ -242,17 +242,17 @@ public class DAOGYM {
         
         
     }
-    public static void cambianombre(persona o){
+    public static void cambianombre(Cliente o){
         o.setNombre(modificagym.etinom.getText());
     }
-    public static void cambiaape(persona o ){
+    public static void cambiaape(Cliente o ){
         o.setApellido(modificagym.etiape.getText());
     }
-    public static void cambiaDNI (persona o ){
-        persona a=null;
+    public static void cambiaDNI (Cliente o ){
+        Cliente a=null;
         String dni="";
         dni=modificagym.etidni.getText();
-        a=new persona(dni);
+        a=new Cliente(dni,"");
         int pos =DAOGYM.buscarfijo(a);
         if (pos==-1){
            // modificagym.etidnirep.setVisible(true);
@@ -337,9 +337,11 @@ public class DAOGYM {
     }
   }
         public static void ObtenSeleccionadoCompleto(){
+            Cliente Cli=null;
+            
             if (PagerGym.tablagym.getModel().getRowCount() != 0) {
            
-             int inicio=(pagina.currentPageIndex)*pagina.itemsPerPage;
+             int inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage;
               int selec = PagerGym.tablagym.getSelectedRow();
               
                 int selection1=inicio+selec;
@@ -350,11 +352,11 @@ public class DAOGYM {
             } else {
                 String email = (String) PagerGym.tablagym.getModel().getValueAt(selection1, 6);
                 
-                Arraylistgym.o = new persona(email,"");
+                 Cli= new Cliente(email,"");
                 JOptionPane.showMessageDialog(null,email);
             }
-            int pos=DAOGYM.buscarfijo(Arraylistgym.o);
-            Arraylistgym.o=Arraylistgym.gym.get(pos);
+            int pos=DAOGYM.buscarfijo(Cli);
+            Arraylistgym.C =Arraylistgym.gym.get(pos);
     }
   }
         
@@ -428,7 +430,7 @@ public class DAOGYM {
              String login=Altagym.etilogin.getText();
              String password=Altagym.etipassword.getText();
          String dni=Altagym.etidni.getText();
-         Arraylistgym.C=new Cliente(nombre,Apellido,dni,a1,login,password,categoria, cuota,"","user",1);
+         Arraylistgym.C=new Cliente(nombre,Apellido,dni,a1,login,password,categoria, cuota,"","user",Altagym.CalenDia.getDay());
          //super(nombre, apellido, DNI, fechaNac, login, password, categoria, cuota, avatar,tipo);
         }
         public static void singletonCli(){
