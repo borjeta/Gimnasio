@@ -8,6 +8,7 @@ package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
 import Clases.fecha;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
+import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
 import com.mysql.jdbc.CallableStatement;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
@@ -112,7 +113,7 @@ public class DAOBD {
 
         PreparedStatement stmt = null;
         int resultado=0;
-  
+        DAOEFgrafic.ObtenSeleccionadoCompleto();
         try {
             stmt = (PreparedStatement) con.prepareStatement("UPDATE Fijos SET Nombre=?,Edad=?,DNI=?,Departamento,Fecha_nacimiento=?"
                     +",Sueldo=?,Login=?,Password=?,Avatar=?,Tipo=?,Estado=?,Antiguedad=?,Fecha_contratacion=? WHERE DNI=?");

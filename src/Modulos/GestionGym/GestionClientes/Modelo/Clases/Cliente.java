@@ -36,7 +36,9 @@ public class Cliente extends persona{
         this.diaPago = diaPago;
     }
     
-    
+   public boolean equals(Object c){
+		return getLogin().equals(((persona)c).getLogin());
+} 
     
     
 }

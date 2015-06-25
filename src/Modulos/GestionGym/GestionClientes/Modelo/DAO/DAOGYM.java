@@ -158,15 +158,15 @@ public class DAOGYM {
          String password=modificagym.etipassword.getText();
          String login=Arraylistgym.o.getLogin();
          String dni=modificagym.etidni.getText();
-         if(modificagym.rbSilver.isSelected()){
+         if(modificagym.btnSilver.isSelected()){
              categoria="Silver";
              cuota=20;
          }
-         if(modificagym.rbGolden.isSelected()){
+         if(modificagym.btnGolden.isSelected()){
              categoria="Golden";
              cuota=40;
          }
-         if(modificagym.rbDiamond.isSelected()){
+         if(modificagym.btnDiamond.isSelected()){
              categoria="Diamond";
              cuota=60;
          }
@@ -179,7 +179,7 @@ public class DAOGYM {
          
      
     }
-    public static int buscarfijo(Cliente ef){//Buscar
+    public static int buscarCliente(Cliente ef){//Buscar
 		int aux=-1;
 		
 		for (int i = 0; i<=(Arraylistgym.gym.size()-1); i++){
@@ -253,7 +253,7 @@ public class DAOGYM {
         String dni="";
         dni=modificagym.etidni.getText();
         a=new Cliente(dni,"");
-        int pos =DAOGYM.buscarfijo(a);
+        int pos =DAOGYM.buscarCliente(a);
         if (pos==-1){
            // modificagym.etidnirep.setVisible(true);
         }
@@ -317,6 +317,7 @@ public class DAOGYM {
         //((STM)PagerFijos.tablafijos.getModel()).cargar();
     }
     public static void ObtenSelecionado(){
+        Cliente A=null;
         if (PagerGym.tablagym.getModel().getRowCount() != 0) {
            
              int inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage;
@@ -328,16 +329,23 @@ public class DAOGYM {
             if (selec == -1) {
                 //
             } else {
-                String dni = (String) PagerGym.tablagym.getModel().getValueAt(selec, 6);
+                String email = (String) PagerGym.tablagym.getModel().getValueAt(selec, 6);
                 
-                JOptionPane.showMessageDialog(null,dni);
-                Arraylistgym.o = new persona(dni,"");
+                JOptionPane.showMessageDialog(null,email);
+                
+                Arraylistgym.o = new persona(email,"");
+                Arraylistgym.C= new Cliente (email,"");
+                int pos=DAOGYM.buscarCliente(Arraylistgym.C);
+                A=Arraylistgym.gym.get(pos);
+                Arraylistgym.C=A;
+                JOptionPane.showMessageDialog(null,"ESTA ES LA CONTRASEÑA DE LA PERSONA SELECCIONADA"+ A.getPassword());
+                Arraylistgym.pass=A.getPassword();
                 
             }
     }
   }
         public static void ObtenSeleccionadoCompleto(){
-            Cliente Cli=null;
+            persona Cli=null;
             
             if (PagerGym.tablagym.getModel().getRowCount() != 0) {
            
@@ -347,15 +355,16 @@ public class DAOGYM {
                 int selection1=inicio+selec;
                 
     
-            if (selec == -1) {
+            if (selec != -1) {
                 //
-            } else {
+            
                 String email = (String) PagerGym.tablagym.getModel().getValueAt(selection1, 6);
                 
-                 Cli= new Cliente(email,"");
+                 Cli= new persona(email,"");
                 JOptionPane.showMessageDialog(null,email);
             }
-            int pos=DAOGYM.buscarfijo(Cli);
+            int pos=DAOGYM.buscarfio(Cli);
+            JOptionPane.showMessageDialog(null,"POSICION DEL EMAIL"+pos);
             Arraylistgym.C =Arraylistgym.gym.get(pos);
     }
   }
@@ -538,5 +547,42 @@ public class DAOGYM {
      
       
          
+     }
+     public static void CargaPassSingle(){
+         DAOGYM.ObtenSelecionado();
+     }
+     public static void cargaSingleCliModifica(){
+         DAOGYM.CargaPassSingle();
+         String nombre,apellido,email,pass=null,categoria=null;
+         int diapago,cuota=0;
+         fecha a1=null;
+// String nombre, String apellido, String DNI, fecha fechaNac, String login, String password, String categoria, int cuota, String avatar,String tipo,int diaPago
+         nombre=modificagym.etinom.getText();
+         apellido=modificagym.etiape.getText();
+         email=modificagym.etiLogin.getText();
+         diapago=modificagym.CalenDiaMo.getDay();
+         String DNI=modificagym.etidni.getText();
+         String date1 = ((JTextFieldDateEditor) Altagym.etinac.getDateEditor()).getText();
+             a1=new fecha(date1);
+         if(modificagym.btnSilver.isSelected()==true){
+                 categoria="Silver";
+                 modificagym.eticuota.setText("20");
+                 cuota=20;
+             }
+           else  if(modificagym.btnGolden.isSelected()==true){
+                 categoria="Golden";
+                 modificagym.eticuota.setText("40");
+                 cuota=40;
+             }
+             else  if(modificagym.btnDiamond.isSelected()==true){
+                 categoria="Diamond";
+                 modificagym.eticuota.setText("60");
+                 cuota=60;
+             }
+             else {
+                 JOptionPane.showMessageDialog(null,"DEBE SELECCIONAR UNA CATEGORIA");
+             }
+            Cliente A=new Cliente (nombre,apellido,DNI,a1,email,Arraylistgym.pass,categoria,cuota,"",Arraylistgym.C.getTipo(),diapago);
+     
      }
 }

@@ -335,7 +335,8 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 modifica.etidni.setText(Arraylistgym.C.getDNI());
                 modifica.eticuota.setText(String.valueOf(Arraylistgym.C.getCuota()));
         ((JTextFieldDateEditor)modifica.etinac.getDateEditor()).setText(Arraylistgym.C.getFechaNac().toString());
-                
+                modifica.etiLogin.setText(Arraylistgym.C.getLogin());
+                modifica.CalenDiaMo.setDay(Arraylistgym.C.getDiaPago());
 ;
                         
                 // icono de la finestra

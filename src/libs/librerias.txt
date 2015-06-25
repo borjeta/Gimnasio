@@ -1,0 +1,15 @@
+Apache FOP API
+<FOP>/fop-0.20.5/build/fop.jar
+	
+Graphics classes
+<FOP>/fop-0.20.5/lib/batik.jar
+	
+Logger classes
+<FOP>/fop-0.20.5/lib/ avalon-framework-cvs-20020806.jar
+	
+The DOMParser and the SAXParser classes
+<FOP>/fop-0.20.5/lib/ xercesImpl-2.2.1.jar
+
+<FOP>/fop-0.20.5/lib/ xmlgraphics ...
+
+<FOP>/fop-0.20.5/lib/ commons-io ...

@@ -115,7 +115,7 @@ public class DAOBDGYM {
 
         PreparedStatement stmt = null;
         int resultado=0;
-  
+        DAOGYM.cargaSingleCliModifica();
         try {
             stmt = (PreparedStatement) con.prepareStatement("UPDATE Clientes SET DNI=?,Nombre=?,Apellido=?,Fecha_nacimiento=?"
                     +",Login=?,Password=?,Categoria=?,Cuota=?,Avatar=?,Tipo=?,DiaPago=? WHERE Login=?");

@@ -20,4 +20,5 @@ public class Arraylistgym {
         public static user U;
         public static int tipo;
         public static Cliente C;
+        public static String pass;
 }

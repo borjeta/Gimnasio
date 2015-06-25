@@ -58,11 +58,11 @@ public class BLLGYM {
     public static boolean validatodoModifica() {
             boolean val=false,val1=false,val2=false,val3=false,val4=false;
             fecha a1=null;
-            persona a, b = null;
-            String DNI;
-            DNI=modificagym.etidni.getText();
-            a=new persona(DNI);
-            int pos=DAOGYM.buscarfijo(a);
+            Cliente a, b = null;
+            String email;
+            email=modificagym.etidni.getText();
+            a=new Cliente(email,"");
+            int pos=DAOGYM.buscarCliente(a);
             b=Arraylistgym.gym.get(pos);
             val1=Validacion.validaNombre(modificagym.etinom.getText());
             val2=Validacion.DNI(modificagym.etidni.getText());
@@ -83,7 +83,7 @@ public class BLLGYM {
     }
     public static void EliminaFijo(){
         DAOGYM.ObtenSelecionado();//Carregue el seleccionat en el Singleton del ArrayList
-        int pos=DAOGYM.buscarfijo(Arraylistgym.o); // Busca la posicio
+        int pos=DAOGYM.buscarCliente(Arraylistgym.C); // Busca la posicio
         JOptionPane.showMessageDialog(null,pos);
         DAOGYM.eliminaCli(pos); // El elimina del arrayList
        // JOptionPane.showMessageDialog(null,ArrayListEmpFijo.efi.toString());
@@ -95,7 +95,7 @@ public class BLLGYM {
     }
     public static void ModificaCliPager(){
         DAOGYM.ObtenSelecionado();
-        int pos=DAOGYM.buscarfijo(Arraylistgym.C);
+        int pos=DAOGYM.buscarCliente(Arraylistgym.C);
         Cliente ef=Arraylistgym.gym.get(pos);
        ef= BLLGYM.cambiatodo(ef);
         Arraylistgym.gym.set(pos, ef);
@@ -115,11 +115,12 @@ public class BLLGYM {
     public static void ValidaTodoCre(){
          boolean val=false,val1=false,val2=false,val3=false,val4=false;
             fecha a1=null;
-            persona a, b = null;
+            Cliente a, b = null;
             String DNI;
-            DNI=Altagym.etidni.getText();
-            a=new persona(DNI);
-            int pos=DAOGYM.buscarfijo(a);
+            String email=null;
+            email=Altagym.etilogin.getText();
+            a=new Cliente(email,"");
+            int pos=DAOGYM.buscarCliente(a);
             
             if(pos==-1){
             val1=Validacion.validaNombre(Altagym.etinombre.getText());
