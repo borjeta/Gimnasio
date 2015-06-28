@@ -10,19 +10,15 @@ import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLBDGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
-
 import Modulos.GestionGym.GestionClientes.Modelo.DAO.DAOGYM;
 import Modulos.GestionGym.GestionClientes.Vista.Altagym;
 import Modulos.GestionGym.GestionClientes.Vista.Login.Login;
+import Modulos.GestionGym.GestionClientes.Vista.Miperfil;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.PagerGym;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.STM;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.modificagym;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.pagina;
-import Modulos.GestionGym.GestionUsuarios.Controlador.ControladorUser;
-import static Modulos.GestionGym.GestionUsuarios.Controlador.ControladorUser.rootmenu;
-import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
-import Modulos.GestionGym.GestionUsuarios.Modelo.DAO.DAOUs;
-import Modulos.GestionGym.GestionUsuarios.Vista.RootMenu;
+import Modulos.GestionGym.GestionClientes.Vista.RootMenu;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Controlador.controladorfijos;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
 import Utils.Menus;
@@ -60,10 +56,11 @@ import javax.swing.table.TableRowSorter;
 public class controladorgym implements ActionListener, KeyListener, MouseListener, FocusListener{
     
     public static RootMenu rootmenu=new RootMenu();
-    public  static PagerGym Pagergym = new PagerGym();
+    public static PagerGym Pagergym = new PagerGym();
     public static Altagym Alta=new Altagym();
     public static modificagym modifica= new modificagym();
     public static Login Login=new Login();
+    public static Miperfil Perfil= new Miperfil();
     public static TableRowSorter<TableModel> sorter =new TableRowSorter<TableModel>(new STM());
     
     private persona ef = null;
@@ -104,6 +101,9 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
             case 4: 
                 rootmenu=(RootMenu) frm;
                 break;
+            case 5:
+                Perfil=(Miperfil) frm;
+                break;
         }
         
     }
@@ -133,6 +133,8 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         _BTN_XML,
         _TAULA,
         _VOLVER,
+        _BTN_PERFIL,
+        
         // Finestra FrmAlta
         _BTN_GUARDAR1,
         _BTN_CANCELAR1,
@@ -140,6 +142,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         _TXT_NOM1,
         _TXT_DNI1,
         _TXT_SALARIBASE1,
+        
         // Finestra FrmModi
         _BTN_GUARDAR2,
         _BTN_CANCELAR2,
@@ -158,9 +161,10 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         //Finestra ROOT MENU
         
         _BTN_ListaCli,
-        _BTN_ListaUs
+        _BTN_ListaUs,
         
-        
+        //Finestra de Mi perfil
+        _BTN_TORNARPERFIL
         
         
         
@@ -261,6 +265,14 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
                 Pagergym.btnXML.setActionCommand("_BTN_XML");
                 Pagergym.btnXML.setName("_BTN_XML");
                 Pagergym.btnXML.addMouseListener(this);
+                //BOTO MI PERFIL
+                Pagergym.btnPerfil.setActionCommand("_BTN_PERFIL");
+                Pagergym.btnPerfil.setName("_BTN_PERFIL");
+                Pagergym.btnPerfil.addMouseListener(this);
+                
+                
+                
+                
                 // Filtre
                 //Pagergym.txtFiltre.setActionCommand("_TXT_FILTRE");
                 //Pagergym.txtFiltre.setName("_TXT_FILTRE");
@@ -337,7 +349,18 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         ((JTextFieldDateEditor)modifica.etinac.getDateEditor()).setText(Arraylistgym.C.getFechaNac().toString());
                 modifica.etiLogin.setText(Arraylistgym.C.getLogin());
                 modifica.CalenDiaMo.setDay(Arraylistgym.C.getDiaPago());
-;
+                if(Arraylistgym.C.getCuota()==20){
+                    modificagym.btnSilver.setSelected(true);
+                }
+                if(Arraylistgym.C.getCuota()==40){
+                    modificagym.btnGolden.setSelected(true);
+                }
+                if(Arraylistgym.C.getCuota()==60){
+                    modificagym.btnDiamond.setSelected(true);
+                }
+                         
+
+
                         
                 // icono de la finestra
                 //modifica.setIconImage(imageicono);
@@ -437,12 +460,29 @@ Login.addWindowListener(new WindowAdapter() {
                 rootmenu.btListaCli.setActionCommand("_BTN_ListaCli");
                 rootmenu.btListaCli.setName("_BTN_ListaCli");
                 rootmenu.btListaCli.addActionListener(this);
-                
+               
                 rootmenu.btListaUs.setActionCommand("_BTN_ListaUs");
                 rootmenu.btListaUs.setName("_BTN_ListaUs");
                 rootmenu.btListaUs.addActionListener(this);
                 break;
+            case 5:
+                //Finestra de Mi perfil
                 
+                Perfil.setVisible(true);
+                Perfil.setResizable(false);
+                Perfil.setLocationRelativeTo(null);
+                
+                Perfil.btnVolver.setActionCommand("_BTN_TORNARPERFIL");
+                Perfil.btnVolver.setName("_BTN_TORNARPERFIL");
+                Perfil.btnVolver.addActionListener(this);
+                DAOGYM.DatosUsLogeado();
+                Perfil.Nombre.setEditable(false);
+                Perfil.Apellido.setEditable(false);
+                Perfil.DNI.setEditable(false);
+                Perfil.email.setEditable(false);
+                Perfil.categoria.setEditable(false);
+                Perfil.cuota.setEditable(false);
+                Perfil.Tipo.setEditable(false);
         
         }
         
@@ -452,22 +492,29 @@ Login.addWindowListener(new WindowAdapter() {
     @Override
     public void actionPerformed(ActionEvent ae) {
         switch (Accion.valueOf(ae.getActionCommand())) {
+            //Finestra de Mi perfil
+            
+            case _BTN_TORNARPERFIL:
+                Perfil.dispose();
+                new controladorgym(new PagerGym(),0).iniciar(0);
+                break;
+            
             //FINESTRA LOGIN
             case _BTN_ACEPTARLOG:
-                BLLGYM.compruebauser();
-                JOptionPane.showMessageDialog(null,"Arraylistgym.tipo="+Arraylistgym.tipo);
-                if (Arraylistgym.tipo==2){
+                boolean val=BLLGYM.compruebauser();
+                
+                if ((Arraylistgym.tipo==2)&&(val==true)){
                         new controladorgym(new RootMenu(),4).iniciar(4);
                         Login.dispose();
                 }
-                    if(Arraylistgym.tipo==0){
+                    if((Arraylistgym.tipo==0)&&(val==true)){
                         new controladorgym(new PagerGym(),0).iniciar(0);
                         Login.dispose();
                     }
                 if(Arraylistgym.tipo==-1){
                     JOptionPane.showMessageDialog(null,"Usuario Incorrecto");
                 }
-            JOptionPane.showMessageDialog(null,Arraylistgym.tipo);
+            
                 break;
             case _BTN_HAZTEUS:
                 new controladorgym(new Altagym(),1).iniciar(1);
@@ -477,6 +524,11 @@ Login.addWindowListener(new WindowAdapter() {
                 pagina.currentPageIndex -= 1;
                // pagina.initLinkBox();
                 //tablafijos.addRowSelectionInterval(0, 0);
+                break;
+            case _BTN_PERFIL:
+                JOptionPane.showMessageDialog(null,"Mi perfil");
+                Pagergym.dispose();
+                new controladorgym(new Miperfil(),5).iniciar(5);
                 break;
                  //Finestra ROOT MENU
             case _BTN_ListaCli:
@@ -535,7 +587,8 @@ Login.addWindowListener(new WindowAdapter() {
                 modifica.dispose();
                 break;
             case _BTN_CANCELAR1:
-                this.cancelarEFA();
+                Alta.dispose();
+                new controladorgym(new PagerGym(), 0).iniciar(0);
                 break;
             case _BTN_CANCELAR2:
                 //this.omplirCampsM(EFBLL.cercarEmpleatFix());
@@ -543,8 +596,8 @@ Login.addWindowListener(new WindowAdapter() {
                 break;
             case _BTN_GUARDAR1:
                 //ef = this.guardarA();
-                 {
-                     {  
+                 
+                       
                              
                        // Pagergym.tablagym.setModel(new STM());
                 //((STM)  Pagergym.tablagym.getModel()).cargar();
@@ -555,13 +608,17 @@ Login.addWindowListener(new WindowAdapter() {
                         //Alta.txtFiltre.setText(null);
                         Alta.setEnabled(true);
                         Alta.dispose();
+                        boolean val = false;
+                        val=DAOGYM.CompruebaAltaNoVacio();
+                        JOptionPane.showMessageDialog(null,"Campos Vacios?"+val);
+                        if(val==true){
                         Arraylistgym.C=DAOGYM.pideCliente();
                         BLLGYM.ValidaTodoCre();
                         BLLBDGYM.CreaCli();
                         BLLGYM.creaCli();
                         BLLGYM.guardaOcultoTXT();
                         BLLGYM.guardaOcultoXML();
-                        int pos =DAOGYM.buscarfijo(Arraylistgym.C);
+                        int pos =DAOGYM.buscarCliente(Arraylistgym.C);
                         if (pos!=-1){
                            JOptionPane.showMessageDialog(null,"El Login introducido ya se encuentra en la base de datos");
                             }
@@ -569,7 +626,8 @@ Login.addWindowListener(new WindowAdapter() {
                            new controladorgym(new PagerGym(), 0).iniciar(0);
                        
                     }
-                }
+                     else JOptionPane.showMessageDialog(null,"No puede crear un cliente con campos vacios");
+                
                 break;
             case _BTN_GUARDAR2:
                 
@@ -590,7 +648,7 @@ Login.addWindowListener(new WindowAdapter() {
                         
                         
                         new controladorgym(new PagerGym(), 0).iniciar(0);
-                        BLLGYM.refrescatabla();
+                       // BLLGYM.refrescatabla();
                         
                         
                              //ef = this.guardarM();
@@ -621,7 +679,16 @@ Login.addWindowListener(new WindowAdapter() {
         int selec;
         switch (Accion.valueOf(me.getComponent().getName())) {
             // Finestra FrmInterfaceEF
+            case _VOLVER:
+                Pagergym.dispose();
+                if(Arraylistgym.tipo==2){
+                    new controladorgym(new RootMenu(),4).iniciar(4);
+                }
+                else
+                    new controladorgym(new Login(),3).iniciar(3);
+                    break;
             case _BTN_XML:
+                
                 
                 BLLGYM.guardaOcultoXML();
                 break;
@@ -645,6 +712,12 @@ Login.addWindowListener(new WindowAdapter() {
                     }
                 //}
                 break;
+            case _BTN_PERFIL:
+                 JOptionPane.showMessageDialog(null,"Mi perfil");
+                Pagergym.dispose();
+                new controladorgym(new Miperfil(),5).iniciar(5);
+                break;
+                
             case _BTN_MODIFICAR:
               if((Arraylistgym.tipo==1)||(Arraylistgym.tipo==2))
                             {  
@@ -652,7 +725,7 @@ Login.addWindowListener(new WindowAdapter() {
                 
                 if (selec == -1) {
                 } else {
-                    JOptionPane.showMessageDialog(null,"Posicion absoluta:"+selec);
+                    
                    String dni = (String) Pagergym.tablagym.getModel().getValueAt(selec, 6);
                    Arraylistgym.o = new persona(dni,"");
                     BLLGYM.ObtenSeleccionadoCompleto();

@@ -6,12 +6,14 @@
 package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
 
 import Clases.fecha;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
 import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etiCon;
 import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etiNac;
 import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etidepartamento;
 import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etidni;
 import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame.etifallodepar;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
 import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
@@ -381,9 +383,10 @@ public class DAOEFgrafic {
     public static void eliminaFijo(int pos){
        ArrayListEmpFijo.efi.remove(pos);
        Librerias.EMPLEADOS.txt.generatxtOcultoEF();
+       Librerias.EMPLEADOS.xml.generaxmlOcultoEF();
        // fitxer
-        //PagerFijos.tablafijos.setModel(new STM());
-        //((STM)PagerFijos.tablafijos.getModel()).cargar();
+        PagerFijos.tablafijos.setModel(new STM());
+        ((STM)PagerFijos.tablafijos.getModel()).cargar();
     }
     public static void ObtenSelecionado(){
         if (tablafijos.getModel().getRowCount() != 0) {

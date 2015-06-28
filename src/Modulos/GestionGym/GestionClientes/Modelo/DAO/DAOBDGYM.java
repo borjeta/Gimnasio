@@ -6,13 +6,10 @@
 package Modulos.GestionGym.GestionClientes.Modelo.DAO;
 
 import Clases.fecha;
-import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLBDGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.BLL.BLLGYM;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
-import Modulos.GestionGym.GestionUsuarios.Modelo.BLL.BLLBDUs;
-import com.mysql.jdbc.CallableStatement;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -121,9 +118,9 @@ public class DAOBDGYM {
                     +",Login=?,Password=?,Categoria=?,Cuota=?,Avatar=?,Tipo=?,DiaPago=? WHERE Login=?");
             //Nombre,Apellido,DNI,Fecha_nacimiento,Login"
               //       ",Password,Avatar,Tipo,Estado
-            stmt.setString(1, Arraylistgym.C.getNombre());
-            stmt.setString(2, Arraylistgym.C.getApellido());
-            stmt.setString(3, Arraylistgym.C.getDNI());
+            stmt.setString(1, Arraylistgym.C.getDNI());
+            stmt.setString(2, Arraylistgym.C.getNombre());
+            stmt.setString(3, Arraylistgym.C.getApellido());
             stmt.setString(4, Arraylistgym.C.getFechaNac().toString());
             stmt.setString(5, Arraylistgym.C.getLogin());
             stmt.setString(6, Arraylistgym.C.getPassword());
@@ -132,6 +129,7 @@ public class DAOBDGYM {
             stmt.setString(9, Arraylistgym.C.getAvatar());
             stmt.setString(10,Arraylistgym.C.getTipo());
             stmt.setInt(11,Arraylistgym.C.getDiaPago());
+            stmt.setString(12,Arraylistgym.C.getLogin());
             
 
             resultado = stmt.executeUpdate();
@@ -187,7 +185,7 @@ public class DAOBDGYM {
         BLLBDGYM.listaCli();
         BLLGYM.guardaOcultoXML();
         BLLGYM.guardaOcultoTXT();
-        BLLBDUs.listaUser();
+     
     }
     
     

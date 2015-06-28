@@ -26,10 +26,11 @@ import javax.swing.JOptionPane;
  */
 public class BLLGYM {
      public static void creaCli() {
-        persona o=null;
+        Cliente o=null;
     o=DAOGYM.pideCliente();
     Arraylistgym.gym.add(o);
     Librerias.CLIENTES.txt.generatxtOcultoClientes();
+    Librerias.CLIENTES.xml.generaxmlOcultoGym();
     
     
 }
@@ -95,12 +96,13 @@ public class BLLGYM {
     }
     public static void ModificaCliPager(){
         DAOGYM.ObtenSelecionado();
-        int pos=DAOGYM.buscarCliente(Arraylistgym.C);
+        int pos=DAOGYM.buscarfio(Arraylistgym.o);
         Cliente ef=Arraylistgym.gym.get(pos);
        ef= BLLGYM.cambiatodo(ef);
         Arraylistgym.gym.set(pos, ef);
         BLLGYM.guardaOcultoXML();
         BLLGYM.guardaOcultoTXT();
+        
        //DAOEFGRAfic modificaFijoPager
     }
     public static void ObtenSeleccionado(){
@@ -146,8 +148,9 @@ public class BLLGYM {
         Librerias.CLIENTES.txt.generatxtOcultoClientes();
         
     }
-    public static void compruebauser(){
-        DAOGYM.CompruebaUser();
+    public static boolean compruebauser(){
+        boolean val =DAOGYM.CompruebaUser();
+    return val;
     }
     public static void refrescatabla(){
         DAOGYM.refrescatabla();

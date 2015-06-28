@@ -7,7 +7,7 @@ package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Controlador;
 
 import Clases.fecha;
 import Modulos.GestionGym.GestionClientes.Controlador.controladorgym;
-import Modulos.GestionGym.GestionUsuarios.Vista.RootMenu;
+import Modulos.GestionGym.GestionClientes.Vista.RootMenu;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLBD;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLEFgraf;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
@@ -543,14 +543,14 @@ public class controladorfijos implements ActionListener, KeyListener, MouseListe
                 } else {
                     String dni = (String) tablafijos.getModel().getValueAt(selec, 0);
                     ArrayListEmpFijo.o= new EmpFijo(dni);
-                    
-                        ((STM) tablafijos.getModel()).cargar();
-                        tablafijos.setFillsViewportHeight(true);
-                        tablafijos.setRowSorter(sorter);
-                        tablafijos.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
+                    BLLBD.EliminafijoBD();
+                     //   ((STM) tablafijos.getModel()).cargar();
+                       // tablafijos.setFillsViewportHeight(true);
+                       // tablafijos.setRowSorter(sorter);
+                       // tablafijos.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
                         //lblContador.setText(String.valueOf(efix.size()));
                         //Crear.txtFiltre.setText(null);
-                    BLLBD.EliminafijoBD();
+                    
                 }
                 break;
             case _TAULA:

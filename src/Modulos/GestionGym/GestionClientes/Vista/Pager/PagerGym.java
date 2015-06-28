@@ -49,6 +49,7 @@ public class PagerGym extends javax.swing.JFrame {
         btnXML = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblContador = new javax.swing.JLabel();
+        btnPerfil = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,6 +144,8 @@ public class PagerGym extends javax.swing.JFrame {
 
         btnXML.setText("XML");
 
+        btnPerfil.setText("Mi perfil");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,7 +174,10 @@ public class PagerGym extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnJSON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnXML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnXML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGap(277, 277, 277)
@@ -194,7 +200,9 @@ public class PagerGym extends javax.swing.JFrame {
                         .addComponent(btnModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminar)
-                        .addGap(105, 105, 105)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPerfil)
+                        .addGap(59, 59, 59)
                         .addComponent(btnTXT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnJSON)
@@ -295,6 +303,7 @@ public class PagerGym extends javax.swing.JFrame {
     public static javax.swing.JButton btnEliminar;
     public static javax.swing.JButton btnJSON;
     public static javax.swing.JButton btnModificar;
+    public static javax.swing.JButton btnPerfil;
     public static javax.swing.JButton btnTXT;
     public static javax.swing.JButton btnVolver;
     public static javax.swing.JButton btnXML;

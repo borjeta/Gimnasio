@@ -16,16 +16,12 @@ import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
 import Modulos.GestionGym.GestionClientes.Vista.Altagym;
 import Modulos.GestionGym.GestionClientes.Vista.Login.Login;
+import Modulos.GestionGym.GestionClientes.Vista.Miperfil;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.PagerGym;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.STM;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.modificagym;
 import Modulos.GestionGym.GestionClientes.Vista.Pager.pagina;
-import Modulos.GestionGym.GestionUsuarios.Controlador.ControladorUser;
-import Modulos.GestionGym.GestionUsuarios.Modelo.BLL.BLLBDUs;
-import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
-import Modulos.GestionGym.GestionUsuarios.Modelo.DAO.DAOUs;
-import Modulos.GestionGym.GestionUsuarios.Vista.RootMenu;
-import Modulos.GestionGym.GestionUsuarios.Vista.VistaAdmin;
+
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.Calendar;
@@ -130,9 +126,6 @@ public class DAOGYM {
          String password=Altagym.etipassword.getText();
          String dni=Altagym.etidni.getText();
          Cliente o=new Cliente(nombre,Apellido,dni,a1,login,password,categoria, cuota,"","user",diaPago);
-         JOptionPane.showMessageDialog(null,"Nombre"+o.getNombre() +o.getApellido() +"Categoria"+ o.getCategoria() +" Pass "+o.getPassword() +o.getLogin());
-         
-         //(String nombre,String apellido,String DNI, fecha fechaNac,String login,String password,String categoria,int cuota)
          
          return o;
 
@@ -322,7 +315,7 @@ public class DAOGYM {
            
              int inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage;
               int selec = PagerGym.tablagym.getSelectedRow();
-              JOptionPane.showMessageDialog(null,selec);
+              
                 int selection1=inicio+selec;
                 
     
@@ -335,10 +328,9 @@ public class DAOGYM {
                 
                 Arraylistgym.o = new persona(email,"");
                 Arraylistgym.C= new Cliente (email,"");
-                int pos=DAOGYM.buscarCliente(Arraylistgym.C);
+                int pos=DAOGYM.buscarfio(Arraylistgym.o);
                 A=Arraylistgym.gym.get(pos);
                 Arraylistgym.C=A;
-                JOptionPane.showMessageDialog(null,"ESTA ES LA CONTRASEÑA DE LA PERSONA SELECCIONADA"+ A.getPassword());
                 Arraylistgym.pass=A.getPassword();
                 
             }
@@ -361,28 +353,27 @@ public class DAOGYM {
                 String email = (String) PagerGym.tablagym.getModel().getValueAt(selection1, 6);
                 
                  Cli= new persona(email,"");
-                JOptionPane.showMessageDialog(null,email);
+                
             }
             int pos=DAOGYM.buscarfio(Cli);
-            JOptionPane.showMessageDialog(null,"POSICION DEL EMAIL"+pos);
+            
             Arraylistgym.C =Arraylistgym.gym.get(pos);
     }
   }
         
         
-        public static void CompruebaUser(){
+        public static boolean CompruebaUser(){
             //DAOUs.MiraTipo();
             boolean val =false;
                 persona per=null;
                String email= Login.etiLogin.getText();
                String pass= Login.etiPass.getText();
                per = new persona( email, pass);
-               JOptionPane.showMessageDialog(null,"Contraseña escrita:"+per.getLogin());
                 //JOptionPane.showMessageDialog(null,"Contraseña del usuario introducido"+o.getPassword());
                int pos =DAOGYM.buscarfio(per);
-               JOptionPane.showMessageDialog(null,"pos"+pos);
+               
                if(pos!=-1){
-                        persona o=Arraylistgym.gym.get(pos);
+                        Cliente o=Arraylistgym.gym.get(pos);
                         String tipo=o.getTipo();
                             if (tipo.equalsIgnoreCase("admin")){
                                 JOptionPane.showMessageDialog(null,"Administrador!");
@@ -392,8 +383,7 @@ public class DAOGYM {
                                 JOptionPane.showMessageDialog(null,"Usuario normal");
                                 Arraylistgym.tipo=0;
                                 }
-                            JOptionPane.showMessageDialog(null,"Contraseña escrita:"+Login.etiPass.getText());
-                            JOptionPane.showMessageDialog(null,"Contraseña del usuario introducido"+o.getPassword());
+                            
                             if(o.getPassword().equalsIgnoreCase(Login.etiPass.getText())){
                                 val=true;
                                 }
@@ -401,6 +391,7 @@ public class DAOGYM {
                if(pos==-1){
                    Arraylistgym.tipo=-1;
                }
+        return val;
         }
         
        
@@ -445,19 +436,7 @@ public class DAOGYM {
         public static void singletonCli(){
             
         }
-        public static void Singletonuser(){
-             user A=DAOUs.ObtenUser();
-             int pos=DAOUs.BuscaUser(A);
-             JOptionPane.showMessageDialog(null,"POS: "+pos);
-             //Arraylistgym.us.get(pos).setPassword("1234");
-             //BLLGYM.guardaOcultoXML();
-             //BLLGYM.guardaOcultoTXT();
-            
-             //JOptionPane.showMessageDialog(null,"Password encontrado: "+Arraylistgym.us.get(0).getPassword());
-             
-             Arraylistgym.U=Arraylistgym.us.get(pos);
-             //JOptionPane.showMessageDialog(null,"Password guardado en singleton: "+Arraylistgym.U.getPassword());
-        }
+       
         public static persona ObtenCli(){
              String email=Login.etiLogin.getText();
            String pass=Login.etiPass.getText();
@@ -470,50 +449,7 @@ public class DAOGYM {
                  Pagergym.tablagym.setRowSorter(sorter);
                  Pagergym.tablagym.addRowSelectionInterval(0, 0);
         }
-        public static int buscauser(user u ){
-            int aux=-1;
-            int tipo=25;
-            int i=0;
-            user o=null;
-            String Login="";
-            persona a =null;
-            for ( i = 0; i==(Arraylistgym.us.size()); i++){
-                  o =Arraylistgym.us.get(i);
-			if(o.getLogin().equals(u.getLogin())){
-//buclea hasta que encuentra un dni que concuadre con el comparator de la madre y lo devuelve como aux
-				aux=i;
-                        }
-            }
-            
-            for ( i = 0; i==(Arraylistgym.gym.size()); i++){
-                  a =Arraylistgym.gym.get(i);
-			if(a.getLogin().equals(u.getLogin())){
-//buclea hasta que encuentra un dni que concuadre con el comparator de la madre y lo devuelve como aux
-				aux=i;
-                        }
-            }
-            JOptionPane.showMessageDialog(null,aux);
-            //JOptionPane.showMessageDialog(null,o.getLogin());
-            //JOptionPane.showMessageDialog(null,a.getLogin());
-                                if(Arraylistgym.us.get(i).getPassword().equals(u.getPassword())){
-                                   new controladorgym (new PagerGym(), 0).iniciar(0);
-                                  // JOptionPane.showMessageDialog(null,"Ha entrado como usuario cliente");
-                                   tipo=0;
-                                }
-                                if(Arraylistgym.us.get(i).getTipo().equals("user")){
-                                    //JOptionPane.showMessageDialog(null,"Ha entrado como usuario normal");
-                                    tipo=1;
-                                    new controladorgym (new PagerGym(), 0).iniciar(0);
-                                }
-                                if(Arraylistgym.us.get(i).getTipo().equals("Admin")){
-                                    //JOptionPane.showMessageDialog(null,"Ha entrado como administrador");
-                                    new ControladorUser(new RootMenu(),0).iniciar(0);
-                                    tipo=2;
-                                }
         
-            
-            return tipo;
-        }
  
      public static int buscarfio(persona ef){//Buscar
 		int aux=-1;
@@ -525,29 +461,10 @@ public class DAOGYM {
 		return aux;//retorna aux, si lo ha encontrado dara la posicion, si no devolvera -1 lo cual significa que no hay dni que concuadre
 	}
      public static void cargarArrays(){
-         BLLBDUs.listaUser();
+         
          BLLBDGYM.listaCli();
      }
-     public static void cargaSingletonLog(){
-         int aux=-1;
-         String email=Login.etiLogin.getText();
-         user u =new user(email,"");
-         for ( int i = 0; i==(Arraylistgym.us.size()); i++){
-			if((Arraylistgym.us.get(i).getLogin()).equals(u.getLogin())){
-//buclea hasta que encuentra un dni que concuadre con el comparator de la madre y lo devuelve como aux
-				aux=i;
-                                JOptionPane.showMessageDialog(null,"SingletonCargado");
-                                Arraylistgym.o=Arraylistgym.gym.get(i);
-                                JOptionPane.showMessageDialog(null,Arraylistgym.o.getLogin());
-                                
-                                
-                        }
-            }
-         
-     
-      
-         
-     }
+    
      public static void CargaPassSingle(){
          DAOGYM.ObtenSelecionado();
      }
@@ -556,13 +473,13 @@ public class DAOGYM {
          String nombre,apellido,email,pass=null,categoria=null;
          int diapago,cuota=0;
          fecha a1=null;
-// String nombre, String apellido, String DNI, fecha fechaNac, String login, String password, String categoria, int cuota, String avatar,String tipo,int diaPago
+         
          nombre=modificagym.etinom.getText();
          apellido=modificagym.etiape.getText();
          email=modificagym.etiLogin.getText();
          diapago=modificagym.CalenDiaMo.getDay();
          String DNI=modificagym.etidni.getText();
-         String date1 = ((JTextFieldDateEditor) Altagym.etinac.getDateEditor()).getText();
+         String date1 = ((JTextFieldDateEditor) modificagym.etinac.getDateEditor()).getText();
              a1=new fecha(date1);
          if(modificagym.btnSilver.isSelected()==true){
                  categoria="Silver";
@@ -583,6 +500,37 @@ public class DAOGYM {
                  JOptionPane.showMessageDialog(null,"DEBE SELECCIONAR UNA CATEGORIA");
              }
             Cliente A=new Cliente (nombre,apellido,DNI,a1,email,Arraylistgym.pass,categoria,cuota,"",Arraylistgym.C.getTipo(),diapago);
-     
+            Arraylistgym.C=A;
+     }
+     public static void DatosUsLogeado(){
+         String email=Login.etiLogin.getText();
+         String pass= Login.etiPass.getText();
+         persona C=new persona(email,pass);
+         int pos=DAOGYM.buscarfio(C);
+         if(pos!=-1){
+             JOptionPane.showMessageDialog(null,"USUARIO LOGEADO ENCONTRADO");
+         }
+         Arraylistgym.ULog=Arraylistgym.gym.get(pos);
+         Miperfil.Nombre.setText(Arraylistgym.ULog.getNombre());
+         Miperfil.Apellido.setText(Arraylistgym.ULog.getApellido());
+         Miperfil.DNI.setText(Arraylistgym.ULog.getDNI());
+         Miperfil.email.setText(Arraylistgym.ULog.getLogin());
+         Miperfil.categoria.setText(Arraylistgym.ULog.getCategoria());
+         Miperfil.cuota.setText(String.valueOf(Arraylistgym.ULog.getCuota()));
+         
+         if (Arraylistgym.ULog.getTipo().equalsIgnoreCase("admin")){
+             Miperfil.Tipo.setText("Administrador");
+         }
+         if (Arraylistgym.ULog.getTipo().equalsIgnoreCase("user")){
+             Miperfil.Tipo.setText("Usuario normal");
+         }
+         
+     }
+     public static boolean CompruebaAltaNoVacio(){
+         boolean val =true;
+         if((Altagym.etinombre.getText()==null)&&(Altagym.etiapellido.getText()==null)&&(Altagym.etidni.getText()==null)&&(Altagym.etilogin.getText()==null)){
+         val=false;
+         }
+         return val;
      }
 }

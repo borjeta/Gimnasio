@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list>
   <Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
-    <nombre>Jordi</nombre>
+    <nombre>Borja</nombre>
     <apellido>Alventosa</apellido>
-    <DNI>19444444W</DNI>
+    <DNI>12345678A</DNI>
     <fechaNac>
-      <dia>23</dia>
-      <mes>6</mes>
-      <año>1993</año>
-      <fecha>1993/6/23</fecha>
+      <dia>26</dia>
+      <mes>11</mes>
+      <año>1994</año>
+      <fecha>1994/11/26</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1435250219761</time>
+        <time>1435506011810</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1089354180239</time>
+              <time>-1089098388190</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -90,7 +90,7 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-25 18:36:59.761 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-28 17:40:11.810 CEST</defaultCenturyStart>
             <formatData serialization="custom">
               <java.text.DateFormatSymbols>
                 <default>
@@ -4246,39 +4246,39 @@
         </java.text.SimpleDateFormat>
       </formato>
       <SplitArray>
-        <string>1993</string>
-        <string>6</string>
-        <string>23</string>
+        <string>1994</string>
+        <string>11</string>
+        <string>26</string>
       </SplitArray>
     </fechaNac>
-    <login>Jordi@gmail.com</login>
+    <login>Borja@gmail.com</login>
     <password>1234</password>
     <avatar></avatar>
     <Tipo>user</Tipo>
     <estado>0</estado>
     <categoria>Diamond</categoria>
     <cuota>60</cuota>
-    <diaPago>9</diaPago>
+    <diaPago>1</diaPago>
   </Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
   <Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
-    <nombre>Cristina</nombre>
-    <apellido>Alventosa</apellido>
-    <DNI>20416734P</DNI>
+    <nombre>Jordi</nombre>
+    <apellido>Vidal</apellido>
+    <DNI>19444444W</DNI>
     <fechaNac>
-      <dia>20</dia>
+      <dia>23</dia>
       <mes>6</mes>
-      <año>1990</año>
-      <fecha>1990/6/20</fecha>
+      <año>1993</año>
+      <fecha>1993/6/23</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1435250219761</time>
+        <time>1435506011811</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1089354180239</time>
+              <time>-1089098388189</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -4350,7 +4350,119 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-25 18:36:59.761 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-28 17:40:11.811 CEST</defaultCenturyStart>
+            <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
+            <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
+            <pattern>yyyy/MM/dd</pattern>
+          </default>
+        </java.text.SimpleDateFormat>
+      </formato>
+      <SplitArray>
+        <string>1993</string>
+        <string>6</string>
+        <string>23</string>
+      </SplitArray>
+    </fechaNac>
+    <login>Jordi@gmail.com</login>
+    <password>1234</password>
+    <avatar></avatar>
+    <Tipo>user</Tipo>
+    <estado>0</estado>
+    <categoria>Diamond</categoria>
+    <cuota>60</cuota>
+    <diaPago>9</diaPago>
+  </Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
+  <Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
+    <nombre>Cristina</nombre>
+    <apellido>Clemente</apellido>
+    <DNI>20416734P</DNI>
+    <fechaNac>
+      <dia>20</dia>
+      <mes>6</mes>
+      <año>1990</año>
+      <fecha>1990/6/20</fecha>
+      <interruptor>false</interruptor>
+      <Fecha>
+        <time>1435506011811</time>
+        <timezone>Europe/Paris</timezone>
+      </Fecha>
+      <formato serialization="custom">
+        <java.text.DateFormat>
+          <default>
+            <calendar>
+              <time>-1089098388189</time>
+              <timezone>Europe/Paris</timezone>
+            </calendar>
+            <numberFormat class="java.text.DecimalFormat" serialization="custom">
+              <java.text.NumberFormat>
+                <default>
+                  <groupingUsed>false</groupingUsed>
+                  <maxFractionDigits>0</maxFractionDigits>
+                  <maxIntegerDigits>127</maxIntegerDigits>
+                  <maximumFractionDigits>0</maximumFractionDigits>
+                  <maximumIntegerDigits>309</maximumIntegerDigits>
+                  <minFractionDigits>0</minFractionDigits>
+                  <minIntegerDigits>1</minIntegerDigits>
+                  <minimumFractionDigits>0</minimumFractionDigits>
+                  <minimumIntegerDigits>1</minimumIntegerDigits>
+                  <parseIntegerOnly>true</parseIntegerOnly>
+                  <serialVersionOnStream>1</serialVersionOnStream>
+                </default>
+              </java.text.NumberFormat>
+              <java.text.DecimalFormat>
+                <default>
+                  <decimalSeparatorAlwaysShown>false</decimalSeparatorAlwaysShown>
+                  <groupingSize>3</groupingSize>
+                  <maximumFractionDigits>0</maximumFractionDigits>
+                  <maximumIntegerDigits>2147483647</maximumIntegerDigits>
+                  <minExponentDigits>0</minExponentDigits>
+                  <minimumFractionDigits>0</minimumFractionDigits>
+                  <minimumIntegerDigits>1</minimumIntegerDigits>
+                  <multiplier>1</multiplier>
+                  <parseBigDecimal>false</parseBigDecimal>
+                  <serialVersionOnStream>4</serialVersionOnStream>
+                  <useExponentialNotation>false</useExponentialNotation>
+                  <negPrefixPattern>&apos;-</negPrefixPattern>
+                  <negSuffixPattern></negSuffixPattern>
+                  <negativePrefix>-</negativePrefix>
+                  <negativeSuffix></negativeSuffix>
+                  <posPrefixPattern></posPrefixPattern>
+                  <posSuffixPattern></posSuffixPattern>
+                  <positivePrefix></positivePrefix>
+                  <positiveSuffix></positiveSuffix>
+                  <roundingMode>HALF_EVEN</roundingMode>
+                  <symbols serialization="custom">
+                    <java.text.DecimalFormatSymbols>
+                      <default>
+                        <decimalSeparator>,</decimalSeparator>
+                        <digit>#</digit>
+                        <exponential>E</exponential>
+                        <groupingSeparator>.</groupingSeparator>
+                        <minusSign>-</minusSign>
+                        <monetarySeparator>,</monetarySeparator>
+                        <patternSeparator>;</patternSeparator>
+                        <perMill>‰</perMill>
+                        <percent>%</percent>
+                        <serialVersionOnStream>3</serialVersionOnStream>
+                        <zeroDigit>0</zeroDigit>
+                        <NaN>�</NaN>
+                        <currencySymbol>€</currencySymbol>
+                        <exponentialSeparator>E</exponentialSeparator>
+                        <infinity>∞</infinity>
+                        <intlCurrencySymbol>EUR</intlCurrencySymbol>
+                        <locale reference="../../../../../../../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
+                      </default>
+                    </java.text.DecimalFormatSymbols>
+                  </symbols>
+                </default>
+              </java.text.DecimalFormat>
+            </numberFormat>
+          </default>
+        </java.text.DateFormat>
+        <java.text.SimpleDateFormat>
+          <default>
+            <serialVersionOnStream>1</serialVersionOnStream>
+            <defaultCenturyStart>1935-06-28 17:40:11.811 CEST</defaultCenturyStart>
             <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
             <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
             <pattern>yyyy/MM/dd</pattern>
@@ -4374,7 +4486,7 @@
   </Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
   <Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
     <nombre>Raquel </nombre>
-    <apellido>Julia</apellido>
+    <apellido>Llopis</apellido>
     <DNI>20416734W</DNI>
     <fechaNac>
       <dia>12</dia>
@@ -4383,14 +4495,14 @@
       <fecha>1990/5/12</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1435250219761</time>
+        <time>1435506011811</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1089354180238</time>
+              <time>-1089098388189</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -4462,7 +4574,7 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-25 18:36:59.762 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-28 17:40:11.811 CEST</defaultCenturyStart>
             <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
             <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
             <pattern>yyyy/MM/dd</pattern>
@@ -4477,122 +4589,12 @@
     </fechaNac>
     <login>Raquel@gmail.com</login>
     <password>1234</password>
-    <Tipo>Admin</Tipo>
+    <avatar></avatar>
+    <Tipo>user</Tipo>
     <estado>0</estado>
     <categoria>Silver</categoria>
     <cuota>20</cuota>
-    <diaPago>0</diaPago>
-  </Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
-  <Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
-    <nombre>Borja</nombre>
-    <apellido>Alventosa</apellido>
-    <DNI>20497447P</DNI>
-    <fechaNac>
-      <dia>26</dia>
-      <mes>11</mes>
-      <año>1994</año>
-      <fecha>1994/11/26</fecha>
-      <interruptor>false</interruptor>
-      <Fecha>
-        <time>1435250219762</time>
-        <timezone>Europe/Paris</timezone>
-      </Fecha>
-      <formato serialization="custom">
-        <java.text.DateFormat>
-          <default>
-            <calendar>
-              <time>-1089354180238</time>
-              <timezone>Europe/Paris</timezone>
-            </calendar>
-            <numberFormat class="java.text.DecimalFormat" serialization="custom">
-              <java.text.NumberFormat>
-                <default>
-                  <groupingUsed>false</groupingUsed>
-                  <maxFractionDigits>0</maxFractionDigits>
-                  <maxIntegerDigits>127</maxIntegerDigits>
-                  <maximumFractionDigits>0</maximumFractionDigits>
-                  <maximumIntegerDigits>309</maximumIntegerDigits>
-                  <minFractionDigits>0</minFractionDigits>
-                  <minIntegerDigits>1</minIntegerDigits>
-                  <minimumFractionDigits>0</minimumFractionDigits>
-                  <minimumIntegerDigits>1</minimumIntegerDigits>
-                  <parseIntegerOnly>true</parseIntegerOnly>
-                  <serialVersionOnStream>1</serialVersionOnStream>
-                </default>
-              </java.text.NumberFormat>
-              <java.text.DecimalFormat>
-                <default>
-                  <decimalSeparatorAlwaysShown>false</decimalSeparatorAlwaysShown>
-                  <groupingSize>3</groupingSize>
-                  <maximumFractionDigits>0</maximumFractionDigits>
-                  <maximumIntegerDigits>2147483647</maximumIntegerDigits>
-                  <minExponentDigits>0</minExponentDigits>
-                  <minimumFractionDigits>0</minimumFractionDigits>
-                  <minimumIntegerDigits>1</minimumIntegerDigits>
-                  <multiplier>1</multiplier>
-                  <parseBigDecimal>false</parseBigDecimal>
-                  <serialVersionOnStream>4</serialVersionOnStream>
-                  <useExponentialNotation>false</useExponentialNotation>
-                  <negPrefixPattern>&apos;-</negPrefixPattern>
-                  <negSuffixPattern></negSuffixPattern>
-                  <negativePrefix>-</negativePrefix>
-                  <negativeSuffix></negativeSuffix>
-                  <posPrefixPattern></posPrefixPattern>
-                  <posSuffixPattern></posSuffixPattern>
-                  <positivePrefix></positivePrefix>
-                  <positiveSuffix></positiveSuffix>
-                  <roundingMode>HALF_EVEN</roundingMode>
-                  <symbols serialization="custom">
-                    <java.text.DecimalFormatSymbols>
-                      <default>
-                        <decimalSeparator>,</decimalSeparator>
-                        <digit>#</digit>
-                        <exponential>E</exponential>
-                        <groupingSeparator>.</groupingSeparator>
-                        <minusSign>-</minusSign>
-                        <monetarySeparator>,</monetarySeparator>
-                        <patternSeparator>;</patternSeparator>
-                        <perMill>‰</perMill>
-                        <percent>%</percent>
-                        <serialVersionOnStream>3</serialVersionOnStream>
-                        <zeroDigit>0</zeroDigit>
-                        <NaN>�</NaN>
-                        <currencySymbol>€</currencySymbol>
-                        <exponentialSeparator>E</exponentialSeparator>
-                        <infinity>∞</infinity>
-                        <intlCurrencySymbol>EUR</intlCurrencySymbol>
-                        <locale reference="../../../../../../../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
-                      </default>
-                    </java.text.DecimalFormatSymbols>
-                  </symbols>
-                </default>
-              </java.text.DecimalFormat>
-            </numberFormat>
-          </default>
-        </java.text.DateFormat>
-        <java.text.SimpleDateFormat>
-          <default>
-            <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-25 18:36:59.762 CEST</defaultCenturyStart>
-            <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
-            <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
-            <pattern>yyyy/MM/dd</pattern>
-          </default>
-        </java.text.SimpleDateFormat>
-      </formato>
-      <SplitArray>
-        <string>1994</string>
-        <string>11</string>
-        <string>26</string>
-      </SplitArray>
-    </fechaNac>
-    <login>Borja@gmail.com</login>
-    <password>1234</password>
-    <Tipo>user</Tipo>
-    <estado>0</estado>
-    <categoria>Diamond</categoria>
-    <cuota>60</cuota>
-    <diaPago>0</diaPago>
+    <diaPago>1</diaPago>
   </Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
   <Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente>
     <nombre>Damian</nombre>
@@ -4605,14 +4607,14 @@
       <fecha>1987/10/2</fecha>
       <interruptor>false</interruptor>
       <Fecha>
-        <time>1435250219762</time>
+        <time>1435506011811</time>
         <timezone>Europe/Paris</timezone>
       </Fecha>
       <formato serialization="custom">
         <java.text.DateFormat>
           <default>
             <calendar>
-              <time>-1089354180238</time>
+              <time>-1089098388189</time>
               <timezone>Europe/Paris</timezone>
             </calendar>
             <numberFormat class="java.text.DecimalFormat" serialization="custom">
@@ -4684,7 +4686,7 @@
         <java.text.SimpleDateFormat>
           <default>
             <serialVersionOnStream>1</serialVersionOnStream>
-            <defaultCenturyStart>1935-06-25 18:36:59.762 CEST</defaultCenturyStart>
+            <defaultCenturyStart>1935-06-28 17:40:11.811 CEST</defaultCenturyStart>
             <formatData reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.SimpleDateFormat/default/formatData"/>
             <locale reference="../../../../../../Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente/fechaNac/formato/java.text.DateFormat/default/numberFormat/java.text.DecimalFormat/default/symbols/java.text.DecimalFormatSymbols/default/locale"/>
             <pattern>yyyy/MM/dd</pattern>

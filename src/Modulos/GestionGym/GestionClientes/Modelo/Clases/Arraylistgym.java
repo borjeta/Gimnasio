@@ -6,7 +6,6 @@
 package Modulos.GestionGym.GestionClientes.Modelo.Clases;
 
 import Modulos.ClasesMadre.persona;
-import Modulos.GestionGym.GestionUsuarios.Modelo.Clases.user;
 import java.util.ArrayList;
 
 /**
@@ -15,10 +14,10 @@ import java.util.ArrayList;
  */
 public class Arraylistgym {
     public static ArrayList <Cliente> gym;
-    public static ArrayList <user> us;
-        public static persona o ;
-        public static user U;
-        public static int tipo;
-        public static Cliente C;
-        public static String pass;
+    public static persona o ;
+    public static int tipo;
+    public static Cliente C;
+    public static String pass;
+    public static Cliente ULog;
+        
 }

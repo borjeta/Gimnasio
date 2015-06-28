@@ -157,7 +157,7 @@ public class DAOBD {
     public static int borrarEmpleadofijoDAO(Connection con) {
         int resultado=0;
         PreparedStatement stmt = null;
-
+JOptionPane.showMessageDialog(null,"Esta es la persona que se va a borrar"+ArrayListEmpFijo.o.getNombre());
         try {
             stmt = (PreparedStatement) con.prepareStatement("DELETE FROM Fijos WHERE DNI=?");
             stmt.setString(1, ArrayListEmpFijo.o.getDNI());
