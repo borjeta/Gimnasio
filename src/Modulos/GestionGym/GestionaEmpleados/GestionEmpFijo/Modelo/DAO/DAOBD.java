@@ -6,9 +6,8 @@
 package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO;
 
 import Clases.fecha;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
 import com.mysql.jdbc.CallableStatement;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
@@ -31,25 +30,25 @@ public class DAOBD {
             stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Gimnasio.Fijos");
             rs = stmt.executeQuery();
             EmpFijo _empf = null;
-           
-
+  //(String nombre,int edad,String DNI, String departamento,fecha fechaNac,float sueldo,int antiguedad,fecha fechaCont,String login,String password){
             while (rs.next()) {
 
                 _empf = new EmpFijo();
                 _empf.setNombre(rs.getString("Nombre"));
+                _empf.setEdad(rs.getInt("Edad"));
                 _empf.setDNI(rs.getString("DNI"));
-                fechanac = new fecha(rs.getString("fecha_nacimiento"));
+                _empf.setDepartamento(rs.getString("Departamento"));
+                fechanac = new fecha(rs.getString("Fecha_nacimiento"));
                 _empf.setFechaNac(fechanac);
-                _empf.setLogin(rs.getString("login"));
-                _empf.setPassword(rs.getString("password"));
-                _empf.setAvatar(rs.getString("avatar"));
-                _empf.setTipo(rs.getString("tipo"));
-                _empf.setEstado(rs.getInt("estado"));
-                fechacont = new fecha(rs.getString("fecha_contratacion"));
-                _empf.setFechaCont(fechacont);
+                _empf.setSueldo(rs.getFloat("Sueldo"));
                 _empf.setAntiguedad(rs.getInt("Antiguedad"));
-                _empf.setSueldo(rs.getFloat("sueldo"));
+                fechacont = new fecha(rs.getString("Fecha_contratacion"));
+                _empf.setFechaCont(fechacont);
+                _empf.setLogin(rs.getString("Login"));
+                _empf.setPassword(rs.getString("Password"));
+                
                 ArrayListEmpFijo.efi.add(_empf);
+                 
 
             }
         } catch (SQLException ex) {
@@ -74,23 +73,19 @@ public class DAOBD {
             
    // String nombre,int edad,String DNI, String departamento,fecha fechaNac,float sueldo,int antiguedad,fecha fechaCont,String login,String password
             stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Empleados.Fijos"
-                    + "(Nombre,Edad,DNI,Departamento,Fecha_nacimiento,Sueldo"
-                    + ",Antiguedad,Fecha_contratacion,Login,Password,Avatar,Tipo,Estado) "
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            stmt.setString(1, ArrayListEmpFijo.o.getNombre());
-            stmt.setInt(2, ArrayListEmpFijo.o.getEdad());
-            stmt.setString(3, ArrayListEmpFijo.o.getDNI());
-            stmt.setString(4, ArrayListEmpFijo.o.getDepartamento());
-            stmt.setString(5, ArrayListEmpFijo.o.getFechaNac().toString());
-            stmt.setFloat(6, ArrayListEmpFijo.o.getSueldo());
-            stmt.setInt(7, ArrayListEmpFijo.o.getAntiguedad());
-            stmt.setString(8, ArrayListEmpFijo.o.getFechaCont().toString());
+                    + "(DNI,Nombre,Departamento,Fecha_nacimiento,Fecha_contratacion,Antiguedad"
+                    + ",Sueldo,Edad,Login,Password) "
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?)");
+            stmt.setString(1, ArrayListEmpFijo.o.getDNI());
+            stmt.setString(2, ArrayListEmpFijo.o.getNombre());
+            stmt.setString(3, ArrayListEmpFijo.o.getDepartamento());
+            stmt.setString(4, ArrayListEmpFijo.o.getFechaNac().toString());
+            stmt.setString(5, ArrayListEmpFijo.o.getFechaCont().toString());
+            stmt.setInt(6, ArrayListEmpFijo.o.getAntiguedad());
+            stmt.setFloat(7, ArrayListEmpFijo.o.getSueldo());
+            stmt.setInt(8, ArrayListEmpFijo.o.getEdad());
             stmt.setString(9, ArrayListEmpFijo.o.getLogin());
             stmt.setString(10, ArrayListEmpFijo.o.getPassword());
-            stmt.setString(11, ArrayListEmpFijo.o.getAvatar());
-            stmt.setString(12, ArrayListEmpFijo.o.getTipo());
-            stmt.setInt(13, ArrayListEmpFijo.o.getEstado());
-            //JOptionPane.showMessageDialog(null, ped);
             resultado=stmt.executeUpdate();
             
             
@@ -115,22 +110,18 @@ public class DAOBD {
         int resultado=0;
         DAOEFgrafic.ObtenSeleccionadoCompleto();
         try {
-            stmt = (PreparedStatement) con.prepareStatement("UPDATE Fijos SET Nombre=?,Edad=?,DNI=?,Departamento,Fecha_nacimiento=?"
-                    +",Sueldo=?,Login=?,Password=?,Avatar=?,Tipo=?,Estado=?,Antiguedad=?,Fecha_contratacion=? WHERE DNI=?");
+            stmt = (PreparedStatement) con.prepareStatement("UPDATE Fijos SET Nombre=?,Edad=?,Departamento=?,Fecha_nacimiento=?"
+                    +",Sueldo=?,Login=?,Password=?,Antiguedad=?,Fecha_contratacion=? WHERE DNI=?");
             stmt.setString(1, ArrayListEmpFijo.o.getNombre());
             stmt.setInt(2, ArrayListEmpFijo.o.getEdad());
-            stmt.setString(3, ArrayListEmpFijo.o.getDNI());
-            stmt.setString(4, ArrayListEmpFijo.o.getDepartamento());
-            stmt.setString(5, ArrayListEmpFijo.o.getFechaNac().toString());
-            stmt.setFloat(6, ArrayListEmpFijo.o.getSueldo());
-            stmt.setString(7, ArrayListEmpFijo.o.getLogin());
-            stmt.setString(8, ArrayListEmpFijo.o.getPassword());
-            stmt.setString(9, ArrayListEmpFijo.o.getAvatar());
-            stmt.setString(10, ArrayListEmpFijo.o.getTipo());
-            stmt.setInt(11, ArrayListEmpFijo.o.getEstado());
-            stmt.setInt(12, ArrayListEmpFijo.o.getAntiguedad());
-            stmt.setString(13, ArrayListEmpFijo.o.getFechaCont().toString());
-            
+            stmt.setString(3, ArrayListEmpFijo.o.getDepartamento());
+            stmt.setString(4, ArrayListEmpFijo.o.getFechaNac().toString());
+            stmt.setFloat(5, ArrayListEmpFijo.o.getSueldo());
+            stmt.setString(6, ArrayListEmpFijo.o.getLogin());
+            stmt.setString(7, ArrayListEmpFijo.o.getPassword());
+            stmt.setInt(8, ArrayListEmpFijo.o.getAntiguedad());
+            stmt.setString(9, ArrayListEmpFijo.o.getFechaCont().toString());
+            stmt.setString(10, ArrayListEmpFijo.o.getDNI());
 
             resultado = stmt.executeUpdate();
 

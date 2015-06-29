@@ -8,7 +8,7 @@ package Modulos.GestionaEmpleados.GestionEmpFijo.Vista;
 import Clases.Conf;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

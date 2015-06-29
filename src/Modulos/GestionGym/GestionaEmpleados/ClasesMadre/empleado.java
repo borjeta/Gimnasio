@@ -1,4 +1,4 @@
-package Modulos.GestionaEmpleados.ClasesMadre;
+package Modulos.GestionGym.GestionaEmpleados.ClasesMadre;
 
 import Clases.fecha;
 import java.io.Serializable;
@@ -26,11 +26,7 @@ public class empleado implements Comparable<empleado>,Serializable{
         public String login;
         @XStreamAlias("password")
         public String password;
-        @XStreamAlias("avatar")
-        private String avatar="";
-        @XStreamAlias("tipo")
-        private String tipo="";
-        private int estado=0;
+        
 
 
 
@@ -88,17 +84,7 @@ public class empleado implements Comparable<empleado>,Serializable{
         this.password = password;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
+    
 
     public String getLogin() {
         return login;
@@ -108,17 +94,6 @@ public class empleado implements Comparable<empleado>,Serializable{
         return password;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public int getEstado() {
-        return estado;
-    }
 
 	public void setEdad(int edad) {
 		this.edad = edad;

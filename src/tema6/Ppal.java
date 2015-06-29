@@ -7,6 +7,14 @@ import Clases.Conf;
 import Modulos.GestionGym.GestionClientes.Controlador.controladorgym;
 
 import Modulos.GestionGym.GestionClientes.Vista.Login.Login;
+import Modulos.GestionGym.GestionClientes.Vista.Pager.PagerGym;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Controlador.controladorfijos;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLBD;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOBD;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos;
+import javax.swing.JOptionPane;
 
 
 
@@ -17,15 +25,12 @@ import Modulos.GestionGym.GestionClientes.Vista.Login.Login;
 public class Ppal{
 
 	public static Conf F=null;
-	public static void main(String[] args) throws InterruptedException  {
+	public static void main(String[] args)  {
             Conf f=new Conf();
-            //BLLBDUs.listaUser();
-            //Librerias.USUARIOS.XML.generaxmlOcultoGym();
-            //user o=Arraylistgym.us.get(0);
-            //JOptionPane.showMessageDialog(null,o.getDNI());
-                             //new controladorgym(new Login(), 3).iniciar(3);
-            new controladorgym(new Login(),3).iniciar(3);
-                             
+            Librerias.CLIENTES.xml.abrir_xmlOcultgym();
+            //new controladorfijos(new PagerFijos(),0).iniciar(0);
+            new controladorgym (new Login(),3).iniciar(3);
+            
         }
   }
 

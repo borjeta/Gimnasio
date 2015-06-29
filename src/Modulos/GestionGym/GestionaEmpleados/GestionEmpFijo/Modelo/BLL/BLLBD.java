@@ -7,7 +7,7 @@ package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.BLL;
 
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOBD;
 import Clases.conexion;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
 import com.mysql.jdbc.Connection;
 
 /**
@@ -34,6 +34,11 @@ public class BLLBD {
     public static void EliminafijoBD(){
         java.sql.Connection A=conexion.connectar();
         DAOBD.borrarEmpleadofijoDAO(A);
+        conexion.desconnectar(A);
+    }
+    public static void cargaenBD(){
+        java.sql.Connection A=conexion.connectar();
+        DAOBD.nuevoEmpfDAO(A);
         conexion.desconnectar(A);
     }
     

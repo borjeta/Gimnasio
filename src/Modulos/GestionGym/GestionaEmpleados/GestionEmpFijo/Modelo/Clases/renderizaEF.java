@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
 
 import java.awt.Color;
 import java.awt.Component;

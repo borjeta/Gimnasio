@@ -1,4 +1,4 @@
-package Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
+package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
 import java.util.ArrayList;
 
 

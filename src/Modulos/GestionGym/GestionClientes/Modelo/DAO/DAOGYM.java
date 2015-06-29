@@ -387,6 +387,12 @@ public class DAOGYM {
                             if(o.getPassword().equalsIgnoreCase(Login.etiPass.getText())){
                                 val=true;
                                 }
+                            if(o.getPassword().equalsIgnoreCase(Login.etiPass.getText())==false){
+                                val=false;
+                                JOptionPane.showMessageDialog(null,"Contraseña Incorrecta");
+                                
+                            }
+                            
                }
                if(pos==-1){
                    Arraylistgym.tipo=-1;

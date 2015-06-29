@@ -3,8 +3,8 @@ package Clases;
 import Modulos.ClasesMadre.persona;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Arraylistgym;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
 import java.text.ParseException;
 
 

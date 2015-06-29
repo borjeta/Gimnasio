@@ -162,6 +162,7 @@ public class controladorgym implements ActionListener, KeyListener, MouseListene
         
         _BTN_ListaCli,
         _BTN_ListaUs,
+        _VOLVERROOT,
         
         //Finestra de Mi perfil
         _BTN_TORNARPERFIL
@@ -464,6 +465,10 @@ Login.addWindowListener(new WindowAdapter() {
                 rootmenu.btListaUs.setActionCommand("_BTN_ListaUs");
                 rootmenu.btListaUs.setName("_BTN_ListaUs");
                 rootmenu.btListaUs.addActionListener(this);
+                
+                rootmenu.btnVolver.setActionCommand("_VOLVERROOT");
+                rootmenu.btnVolver.setName("_VOLVERROOT");
+                rootmenu.btnVolver.addActionListener(this);
                 break;
             case 5:
                 //Finestra de Mi perfil
@@ -536,6 +541,11 @@ Login.addWindowListener(new WindowAdapter() {
                 new controladorgym(new PagerGym(), 0).iniciar(0);
                 rootmenu.dispose();
                 break;
+            case _VOLVERROOT:
+                rootmenu.dispose();
+                    new controladorgym(new Login(),3).iniciar(3);
+                    break;
+                
             case _VOLVER:
                 Pagergym.dispose();
                 if(Arraylistgym.tipo==2){
@@ -599,8 +609,7 @@ Login.addWindowListener(new WindowAdapter() {
                  
                        
                              
-                       // Pagergym.tablagym.setModel(new STM());
-                //((STM)  Pagergym.tablagym.getModel()).cargar();
+                       
                         Pagergym.tablagym.setFillsViewportHeight(true);
                         Pagergym.tablagym.setRowSorter(sorter);
                         Pagergym.tablagym.addRowSelectionInterval(0, 0); // seleccionem la primera fila 
@@ -608,7 +617,7 @@ Login.addWindowListener(new WindowAdapter() {
                         //Alta.txtFiltre.setText(null);
                         Alta.setEnabled(true);
                         Alta.dispose();
-                        boolean val = false;
+                        val = false;
                         val=DAOGYM.CompruebaAltaNoVacio();
                         JOptionPane.showMessageDialog(null,"Campos Vacios?"+val);
                         if(val==true){
@@ -623,6 +632,8 @@ Login.addWindowListener(new WindowAdapter() {
                            JOptionPane.showMessageDialog(null,"El Login introducido ya se encuentra en la base de datos");
                             }
                        else
+                            
+                            ((STM)  Pagergym.tablagym.getModel()).cargar();
                            new controladorgym(new PagerGym(), 0).iniciar(0);
                        
                     }

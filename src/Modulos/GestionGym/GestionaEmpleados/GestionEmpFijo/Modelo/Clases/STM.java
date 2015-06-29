@@ -8,8 +8,9 @@ package Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases;
 
 import Clases.fecha;
 import Modulos.GestionGym.GestionClientes.Modelo.Clases.Cliente;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.BLL.BLLBD;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -169,7 +170,7 @@ public class STM extends AbstractTableModel{
         
         EmpFijo o = null;
         
-        
+        //BLLBD.listaEmpFijos();
         Librerias.EMPLEADOS.xml.abrir_xmlOcultoEF();
         for(int j=0;j<ArrayListEmpFijo.efi.size();j++) {
            o=ArrayListEmpFijo.efi.get(j);

@@ -11,9 +11,9 @@ import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.STM;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.CreaEmpFijoFrame;
 import static Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.PagerFijos.tablafijos;
 import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Vista.modificafijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
-import Modulos.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.ArrayListEmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.Clases.EmpFijo;
+import Modulos.GestionGym.GestionaEmpleados.GestionEmpFijo.Modelo.DAO.DAOEFgrafic;
 
 import Utils.Validacion;
 import com.toedter.calendar.JTextFieldDateEditor;
